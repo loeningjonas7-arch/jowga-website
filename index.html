@@ -1,0 +1,1182 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | Hung Tao Choy Mei Leadership Institute</title>
+    <meta name="description" content="Celebrating 30 years of Kung Fu and community service in Washington, DC. Free programs for DC kids!">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Hung Tao Choy Mei Leadership Institute">
+    <meta property="og:title" content="Home | Hung Tao Choy Mei Leadership Institute">
+    <meta property="og:description" content="Celebrating 30 years of Kung Fu and community service in Washington, DC. Free programs for DC kids!">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="images/jowga/favicon.ico" type="image/vnd.microsoft.icon">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS (precompiled: npx tailwindcss -c tailwind.config.js -i tailwind.input.css -o css/tailwind.css --minify) -->
+    <link rel="stylesheet" href="css/tailwind.css">
+    
+    <style>
+        /* Fix horizontal scroll / shift issue */
+        html, body { overflow-x: hidden; max-width: 100vw; }
+
+        /* CSS Variables from index (1).html */
+        :root{
+            --bg:#ffffff;
+            --text:#1b1b1b;
+            --muted:#3f3f3f;
+            --border:rgba(0,0,0,.14);
+            --shadow:0 10px 24px rgba(0,0,0,.10);
+            --brand-dark:#2b2b2b;
+            --brand-deep:#0b2a3c;
+            --brand-gold:#f0c724;
+            --link:#0d6efd;
+            --container:1320px;
+            --radius:14px;
+            --radius-lg:18px;
+            --step--1: clamp(.92rem,.88rem+.2vw,1rem);
+            --step-0: clamp(1rem,.95rem+.25vw,1.125rem);
+            --step-1: clamp(1.15rem,1.05rem+.6vw,1.5rem);
+            --step-2: clamp(1.4rem,1.15rem+1.1vw,2rem);
+            --step-3: clamp(1.75rem,1.2rem+1.9vw,2.6rem);
+            --step-4: clamp(2.05rem,1.25rem+3vw,3.15rem);
+            --s2:.75rem;--s3:1rem;--s4:1.5rem;--s5:2rem;--s6:3rem;--s7:4rem;
+        }
+
+        /* Logo styling - make it completely white */
+        .site-logo{filter:invert(1) brightness(2)}
+
+        /* Header / nav styles */
+        .site-header{background:#000;color:#fff}
+        .navbar{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:1.5rem;padding:1.25rem 0}
+
+        .brand{display:flex;align-items:center;gap:.75rem;text-decoration:none;color:#fff;font-weight:800;letter-spacing:.02em}
+        .brand img{display:block;transform:scale(1.15)}
+
+        .nav-toggle{display:none;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:#fff;border-radius:12px;padding:.7rem 1rem;font-weight:700;font-size:1.05rem}
+
+        nav[aria-label="Primary"] ul{list-style:none;margin:0;padding:0;display:flex;align-items:center;justify-content:space-evenly;gap:.5rem;flex-wrap:wrap;width:100%}
+        .menu-item{position:relative}
+        .nav-link{color:#fff;text-decoration:none;display:inline-flex;align-items:center;gap:.4rem;padding:.7rem .8rem;border-radius:12px;position:relative;transition:transform 140ms ease, background 140ms ease, box-shadow 140ms ease;font-size:.95rem;font-weight:600}
+        .nav-link:hover{background:rgba(255,255,255,.10);transform:translateY(-1px);box-shadow:0 6px 14px rgba(0,0,0,.25)}
+        .nav-link::after{content:"";position:absolute;left:.7rem;right:.7rem;bottom:.35rem;height:2px;background:rgba(240,199,36,.9);transform:scaleX(0);transform-origin:left;transition:transform 160ms ease;border-radius:999px}
+        .nav-link:hover::after{transform:scaleX(1)}
+        button.nav-link{border:0;background:transparent;font:inherit;cursor:pointer}
+
+        .dropdown{position:absolute;left:0;top:calc(100% + .35rem);min-width:15rem;background:#fff;color:var(--text);border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow);padding:.4rem;display:none;z-index:20}
+        .dropdown a{display:block;padding:.6rem .75rem;border-radius:10px;color:var(--text);text-decoration:none}
+        .dropdown a:hover{background:rgba(13,110,253,.08)}
+        .menu-item[data-open="true"]>.dropdown{display:block}
+
+        .nav-actions{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;justify-content:flex-end}
+        .nav-actions .btn{transition:transform 140ms ease, box-shadow 140ms ease}
+        .nav-actions .btn:hover{transform:translateY(-1px);box-shadow:0 8px 18px rgba(0,0,0,.28)}
+
+        .btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:.7rem 1.35rem;border-radius:999px;border:1px solid rgba(255,255,255,.25);background:transparent;color:#fff;text-decoration:none;font-weight:700;font-size:1.05rem}
+        .btn:hover{background:rgba(255,255,255,.10)}
+        .btn--donate{background:var(--brand-gold);border-color:rgba(0,0,0,.2);color:#000;box-shadow:0 0 10px rgba(240,199,36,.28)}
+
+        .nav-main{display:grid;grid-template-columns:1fr auto;align-items:center;gap:1rem}
+
+        @media (max-width:1150px){
+            .nav-toggle{display:inline-flex;justify-self:end}
+            .nav-main{display:none}
+            .nav-main[data-open="true"]{display:block;grid-column:1 / -1;background:#000}
+            .navbar{grid-template-columns:1fr auto}
+            .brand img{transform:none;max-width:min(300px,60vw);height:auto}
+
+            nav[aria-label="Primary"] ul{flex-direction:column;align-items:stretch;padding:.5rem 0;justify-content:flex-start}
+            .dropdown{position:static;box-shadow:none}
+            .menu-item{width:100%}
+            .nav-link{width:100%;justify-content:space-between}
+            .nav-actions{width:100%;justify-content:flex-start;padding:.25rem 0 .5rem}
+        }
+
+        /* Footer styling from index (1).html */
+        footer{background:#111;color:#fff;padding:var(--s6) 0}
+        .footer-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s5)}
+        footer h2{font-size:var(--step-1);margin:0 0 .75rem;font-weight:800}
+        .footer-col a{color:#fff;transition:color 0.3s ease}
+        .footer-col a:hover{color:var(--brand-gold)}
+        .footer-list{list-style:none;margin:0;padding:0;display:grid;gap:.5rem}
+        .contact-item{display:flex;gap:.6rem;align-items:flex-start}
+        .icon{width:20px;height:20px;flex:0 0 20px;opacity:.95;margin-top:.15rem}
+        .social{display:flex;gap:.75rem;align-items:center;flex-wrap:wrap}
+        .social a{display:inline-flex;align-items:center;gap:.5rem;text-decoration:none;padding:.45rem .65rem;border:1px solid rgba(255,255,255,.22);border-radius:999px;background:rgba(255,255,255,.06)}
+        .social a:hover{background:rgba(255,255,255,.12)}
+        .social svg{width:18px;height:18px;display:block}
+        .visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+        /* Container styling for footer */
+        .container{width:min(100% - 2rem,var(--container));margin-inline:auto}
+
+        /* Responsive footer */
+        @media (max-width:980px){
+            .footer-grid{grid-template-columns:1fr 1fr}
+        }
+        @media (max-width:560px){
+            .footer-grid{grid-template-columns:1fr}
+        }
+
+        /* Custom Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px hsla(47, 87%, 54%, 0.5); }
+            50% { box-shadow: 0 0 40px hsla(47, 87%, 54%, 0.8); }
+        }
+        
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .pulse-glow {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse-slow {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .animate-pulse-slow {
+            animation: pulse-slow 3s ease-in-out infinite;
+        }
+        
+        .animate-pulse-slow:hover {
+            animation: none;
+        }
+        
+        .shadow-gold {
+            box-shadow: 0 8px 32px hsla(47, 87%, 54%, 0.3);
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: hsl(0, 0%, 9%);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: hsl(47, 87%, 54%);
+            border-radius: 5px;
+        }
+
+        /* Typography Improvements */
+        /* Standardize all body paragraphs */
+        p {
+            line-height: 1.7;
+            color: #4b5563; /* gray-600 */
+        }
+
+        /* Heading line heights */
+        h1, .font-bebas {
+            line-height: 1.1;
+        }
+
+        h2 {
+            line-height: 1.2;
+        }
+
+        h3 {
+            line-height: 1.3;
+        }
+
+        h4 {
+            line-height: 1.4;
+        }
+
+        /* Max width for readability - apply to paragraphs in content sections */
+        section p {
+            max-width: 672px;
+        }
+
+        /* Center aligned paragraphs should maintain centering */
+        .text-center p, p.text-center {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Override Bebas Neue for card titles and smaller headings */
+        .card-title {
+            font-family: 'Inter', system-ui, sans-serif;
+            font-weight: 700;
+        }
+        
+        /* Lightbox Modal Styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .lightbox.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .lightbox-content {
+            max-width: 98%;
+            max-height: 98%;
+            object-fit: contain;
+            animation: zoomIn 0.3s ease;
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .lightbox-close:hover {
+            color: #f0c724;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        
+        .clickable-image {
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .clickable-image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+    
+    
+        /* Coming Soon Toast */
+        .coming-soon-toast {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #111;
+            color: #fff;
+            padding: 0.8rem 1.25rem;
+            border-radius: 999px;
+            border: 1px solid #f0c724;
+            box-shadow: 0 8px 24px rgba(0,0,0,.35);
+            font-size: 0.9rem;
+            font-weight: 600;
+            z-index: 10000;
+            opacity: 0;
+            transform: translateY(12px);
+            pointer-events: none;
+            transition: opacity 0.25s ease, transform 0.25s ease;
+        }
+        .coming-soon-toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .coming-soon-toast svg {
+            width: 18px;
+            height: 18px;
+            color: #f0c724;
+            flex-shrink: 0;
+        }
+        @media (max-width: 480px) {
+            .coming-soon-toast {
+                left: 1rem;
+                right: 1rem;
+                bottom: 1rem;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-900 font-sans">
+    
+    <!-- Header/Navigation -->
+    <header class="site-header" role="banner" style="position:absolute;top:0;left:0;width:100%;z-index:50;background:linear-gradient(to bottom,rgba(0,0,0,0.85) 0%,rgba(0,0,0,0.55) 100%)">
+        <div class="container">
+            <div class="navbar">
+                <a href="index.html" class="brand" aria-label="HUNG TAO CHOY MEI LEADERSHIP INSTITUTE home"><img class="site-logo" src="images/jowga/logo.png" alt="Hung Tao Choy Mei Leadership Institute" width="335" height="44" loading="eager" decoding="async" /></a>
+
+                <button class="nav-toggle" type="button" aria-controls="primary-nav" aria-expanded="false">Menu</button>
+
+                <div class="nav-main" id="primary-nav" data-open="false">
+                    <nav aria-label="Primary">
+                        <ul>
+                            <li class="menu-item">
+                                <button class="nav-link" type="button" aria-haspopup="true" aria-expanded="false">Offerings <span aria-hidden="true">&#9662;</span></button>
+                                <div class="dropdown" role="menu">
+                                    <a role="menuitem" href="children_program.html">Kids Programs (FREE)</a>
+                                    <a role="menuitem" href="adult-program.html">Adult Classes</a>
+                                    <a role="menuitem" href="https://www.peerspace.com/pages/listings/5aaab30bb5c4b156000c8347" target="_blank" rel="noopener noreferrer">Book Our Studio</a>
+                                    <a role="menuitem" href="#" class="js-coming-soon">Book a Performance</a>
+                                </div>
+                            </li>
+
+                            <li class="menu-item"><a class="nav-link" href="core-curriculum.html" style="font-weight: 400; font-size: 0.95rem;">What We Teach</a></li>
+
+                            <li class="menu-item">
+                                <button class="nav-link" type="button" aria-haspopup="true" aria-expanded="false">About <span aria-hidden="true">&#9662;</span></button>
+                                <div class="dropdown" role="menu">
+                                    <a role="menuitem" href="about-us.html">About Us</a>
+                                    <a role="menuitem" href="index.html#history">Our History</a>
+                                    <a role="menuitem" href="our-team.html">Our Team</a>
+                                    <a role="menuitem" href="jow-ga-explained.html">Jow Ga Explained</a>
+                                </div>
+                            </li>
+
+                            <li class="menu-item">
+                                <button class="nav-link" type="button" aria-haspopup="true" aria-expanded="false">Resources <span aria-hidden="true">&#9662;</span></button>
+                                <div class="dropdown" role="menu">
+                                    <a role="menuitem" href="#" class="js-coming-soon">2026 Schedule</a>
+                                    <a role="menuitem" href="#" class="js-coming-soon">Events Calendar</a>
+                                </div>
+                            </li>
+                            <li class="menu-item"><a class="nav-link" href="https://www.zeffy.com/en-US/ticketing/hung-tao-choy-mei-leadership-institutes-shop" target="_blank" rel="noopener noreferrer">Shop</a></li>
+                        </ul>
+                    </nav>
+
+                    <div class="nav-actions">
+                        <a class="btn btn--donate" href="donate.html">Donate</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-start overflow-hidden">
+        <!-- Background Image with Overlay -->
+        <div class="absolute inset-0 bg-black">
+            <img src="images/jowga/hero-background.jpg"
+                 alt=""
+                 class="w-full h-full object-cover object-[11%_73%]">
+            <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/30"></div>
+        </div>
+        
+        <!-- Content -->
+        <div class="container mx-auto px-4 relative z-10 pt-24 pb-24 w-full">
+            <div class="grid lg:grid-cols-[1fr_280px] xl:grid-cols-[1fr_300px] gap-10 xl:gap-16 items-start">
+
+                <!-- Left: Text + Sponsors -->
+                <div style="margin-left:0%;margin-top:5%">
+                    <h1 class="font-bebas text-5xl sm:text-6xl md:text-7xl text-white mb-6">
+                        <span class="text-primary">30 Years</span> of <span class="text-primary">Kung Fu</span> &<br>
+                        <span class="text-primary">Community</span>
+                        <span class="block text-white text-3xl sm:text-4xl md:text-5xl mt-2">in Washington, DC</span>
+                    </h1>
+
+                    <div class="mb-10">
+                        <p class="text-lg text-white leading-relaxed">Every child deserves a foundation of discipline, confidence, and belonging. We are a distinguished 501(c)(3) organization operating in Washington, DC for 30 years that provides free summer and after-school programs for DC residents ages 6-18. From Kung Fu mastery to cultural performance, we help kids build confidence, discipline, and community.</p>
+                    </div>
+
+                    <!-- Sponsors -->
+                    <div>
+                        <p class="text-sm font-semibold uppercase tracking-widest text-white mb-4">Supported By</p>
+                        <div class="flex flex-wrap gap-5 items-center">
+                            <a href="https://www.benschilibowl.com" target="_blank" rel="noopener" class="block transition-transform duration-300 hover:scale-105" style="border-radius:10px;overflow:hidden">
+                                <img src="ben's chili bowl foundation.webp" alt="Ben's Chili Bowl Foundation" style="height:52px;width:auto;display:block;" loading="lazy" decoding="async" />
+                            </a>
+                            <a href="https://www.asiaheritageinstitute.org" target="_blank" rel="noopener" class="block transition-transform duration-300 hover:scale-105" style="border-radius:10px;overflow:hidden">
+                                <img src="asian heritage foundation.png" alt="Asia Heritage Institute" style="height:66px;width:auto;display:block;" loading="lazy" decoding="async" />
+                            </a>
+                            <a href="https://learn24.dc.gov" target="_blank" rel="noopener" class="block transition-transform duration-300 hover:scale-105">
+                                <img src="https://learn24.dc.gov/sites/default/files/dc/sites/learn24/featured_content/images/learn24_Color_RGB_Small.png" alt="Learn24" style="height:48px;width:auto;display:block;" loading="lazy" decoding="async" />
+                            </a>
+                            <a href="https://dcarts.dc.gov" target="_blank" rel="noopener" class="block transition-transform duration-300 hover:scale-105">
+                                <img src="CAH_Logo.png" alt="DC Commission on the Arts and Humanities" style="height:48px;width:auto;display:block;" loading="lazy" decoding="async" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Stats stacked vertically  no boxes, no dividers -->
+                <div class="hidden lg:flex flex-col gap-6" style="margin-top:35%">
+                    <div class="stat-card text-center group cursor-default">
+                        <div class="font-bebas text-6xl text-primary leading-none group-hover:scale-105 transition-transform inline-block">
+                            <span data-target="24">0</span><span class="text-4xl">/7</span>
+                        </div>
+                        <p class="text-white font-medium text-sm mt-1 uppercase tracking-wide">Always Open</p>
+                    </div>
+                    <div class="stat-card text-center group cursor-default">
+                        <div class="font-bebas text-6xl text-primary leading-none group-hover:scale-105 transition-transform inline-block">
+                            <span data-target="2500">0</span><span class="text-4xl">+</span>
+                        </div>
+                        <p class="text-white font-medium text-sm mt-1 uppercase tracking-wide">Students Trained</p>
+                    </div>
+                    <div class="stat-card text-center group cursor-default">
+                        <div class="font-bebas text-6xl text-primary leading-none group-hover:scale-105 transition-transform inline-block">
+                            <span data-target="100">0</span><span class="text-4xl">+</span>
+                        </div>
+                        <p class="text-white font-medium text-sm mt-1 uppercase tracking-wide">Community Events</p>
+                    </div>
+                    <div class="stat-card text-center group cursor-default">
+                        <div class="font-bebas text-6xl text-primary leading-none group-hover:scale-105 transition-transform inline-block">
+                            <span data-target="4">0</span>
+                        </div>
+                        <p class="text-white font-medium text-sm mt-1 uppercase tracking-wide">Core Disciplines</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+    
+    <!-- Programs Section -->
+    <section id="programs" class="py-12 md:py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="font-bebas text-4xl md:text-5xl lg:text-6xl text-gray-900">Building Leaders Through Martial Arts</h2>
+                <p class="text-gray-600 mt-4 max-w-2xl mx-auto text-lg">From Kung Fu mastery to cultural performance, we offer comprehensive programs that build confidence, discipline, and community.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 lg:gap-10">
+
+                <!-- Children's Programs -->
+                <div class="flex flex-col items-center gap-4">
+                    <div class="relative group overflow-hidden rounded-3xl shadow-xl w-full">
+                        <img src="images/jowga/training-at-school.jpg"
+                             alt="Training at School"
+                             class="w-full aspect-[4/3] object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-90">
+                    </div>
+                    <a href="children_program.html"
+                       class="inline-flex items-center px-7 py-3 bg-secondary text-white text-base rounded-full font-bold hover:bg-gray-600 transition-all shadow-md">
+                        Children's Programs
+                        <svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Adult Program -->
+                <div class="flex flex-col items-center gap-4">
+                    <div class="relative group overflow-hidden rounded-3xl shadow-xl w-full">
+                        <img src="images/jowga/adult-training.jpg"
+                             alt="Kung Fu Training"
+                             class="w-full aspect-[4/3] object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-90">
+                    </div>
+                    <a href="adult-program.html"
+                       class="inline-flex items-center px-7 py-3 bg-secondary text-white text-base rounded-full font-bold hover:bg-gray-600 transition-all shadow-md">
+                        Adult Program
+                        <svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Who We Are -->
+                <div class="flex flex-col items-center gap-4">
+                    <div class="relative group overflow-hidden rounded-3xl shadow-xl w-full">
+                        <img src="images/jowga/summer-camp-2018.jpg"
+                             alt="Summer Camp 2018"
+                             class="w-full aspect-[4/3] object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-90">
+                    </div>
+                    <a href="about-us.html"
+                       class="inline-flex items-center px-7 py-3 bg-secondary text-white text-base rounded-full font-bold hover:bg-gray-600 transition-all shadow-md">
+                        About Us
+                        <svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                        </svg>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    
+    <!-- What We Teach Section -->
+    <section id="what-we-teach" class="py-12 md:py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="font-bebas text-4xl md:text-5xl lg:text-6xl text-gray-900 mb-4">What We Teach</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Self Defense -->
+                <a href="core-curriculum.html#self-defense" class="group relative block overflow-hidden rounded-3xl bg-white shadow-lg hover:shadow-2xl hover:-translate-y-3 transition-all duration-500">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-[#D4AF37] via-[#FFD700] to-[#D4AF37] rounded-3xl opacity-0 group-hover:opacity-50 blur-lg transition duration-500"></div>
+                    <div class="relative aspect-square overflow-hidden rounded-3xl">
+                        <img src="images/jowga/self-defense.jpg"
+                             alt="Self Defense"
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-125 group-hover:rotate-2">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity"></div>
+                        <div class="absolute inset-0 bg-[#D4AF37]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6 transform group-hover:translate-y-0 transition-transform duration-300">
+                        <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-[#FFD700] group-hover:scale-105 transition-all duration-300" style="font-family: Inter, system-ui, sans-serif;">Self Defense</h3>
+                        <p class="text-white/70 text-sm group-hover:text-white transition-colors">Learn practical techniques for personal safety.</p>
+                    </div>
+                </a>
+
+                <!-- Kung Fu -->
+                <a href="core-curriculum.html#kung-fu" class="group relative block overflow-hidden rounded-3xl bg-white shadow-lg hover:shadow-2xl hover:-translate-y-3 transition-all duration-500">
+                    <div class="relative aspect-square overflow-hidden">
+                        <img src="images/jowga/lion-dance.jpg"
+                             alt="Kung Fu"
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-125 group-hover:rotate-2">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity"></div>
+                        <div class="absolute inset-0 bg-[#D4AF37]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6 transform group-hover:translate-y-0 transition-transform duration-300">
+                        <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-[#FFD700] group-hover:scale-105 transition-all duration-300" style="font-family: Inter, system-ui, sans-serif;">Kung Fu</h3>
+                        <p class="text-white/70 text-sm group-hover:text-white transition-colors">Master the ancient art of Jow Ga Kung Fu.</p>
+                    </div>
+                </a>
+
+                <!-- African Drumming -->
+                <a href="core-curriculum.html#african-drumming" class="group relative block overflow-hidden rounded-3xl bg-white shadow-lg hover:shadow-2xl hover:-translate-y-3 transition-all duration-500">
+                    <div class="relative aspect-square overflow-hidden">
+                        <img src="images/jowga/drumming-class.jpg"
+                             alt="African Drumming"
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-125 group-hover:rotate-2">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity"></div>
+                        <div class="absolute inset-0 bg-[#D4AF37]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6 transform group-hover:translate-y-0 transition-transform duration-300">
+                        <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-[#FFD700] group-hover:scale-105 transition-all duration-300" style="font-family: Inter, system-ui, sans-serif;">African Drumming</h3>
+                        <p class="text-white/70 text-sm group-hover:text-white transition-colors">Connect with rhythm and cultural heritage.</p>
+                    </div>
+                </a>
+
+                <!-- Lion & Dragon Dance -->
+                <a href="core-curriculum.html#lion-dragon-dance" class="group relative block overflow-hidden rounded-3xl bg-white shadow-lg hover:shadow-2xl hover:-translate-y-3 transition-all duration-500">
+                    <div class="relative aspect-square overflow-hidden">
+                        <img src="images/jowga/nuri-lion.jpg"
+                             alt="Lion and Dragon Dance"
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-125 group-hover:rotate-2">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity"></div>
+                        <div class="absolute inset-0 bg-[#D4AF37]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6 transform group-hover:translate-y-0 transition-transform duration-300">
+                        <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-[#FFD700] group-hover:scale-105 transition-all duration-300" style="font-family: Inter, system-ui, sans-serif;">Lion & Dragon Dance</h3>
+                        <p class="text-white/70 text-sm group-hover:text-white transition-colors">Experience traditional Chinese performances.</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Interactive Testimonials Section -->
+    <section id="testimonials" class="py-16 md:py-24 relative overflow-hidden" style="background-color: #f0c724;">
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="font-bebas text-4xl md:text-5xl lg:text-6xl text-gray-900 mb-4">What Our Community Says</h2>
+                <div class="w-24 h-1 bg-[#D4AF37] mx-auto"></div>
+            </div>
+            
+            <div class="max-w-5xl mx-auto relative">
+                <!-- Testimonial Slider -->
+                <div id="testimonialSlider" class="relative">
+                    <div class="testimonial-container overflow-hidden">
+                        <div class="testimonial-track flex transition-transform duration-500 ease-in-out">
+                            
+                            <!-- Testimonial: Bakari -->
+                            <div class="testimonial-slide w-full flex-shrink-0 px-4">
+                                <div class="relative bg-white rounded-3xl p-8 md:p-12 shadow-xl border-l-4 border-[#D4AF37] hover:shadow-2xl transition-shadow">
+                                    <div class="absolute top-6 left-8 w-14 h-14 rounded-2xl bg-[#D4AF37] shadow-gold flex items-center justify-center -z-10">
+                                        <svg class="w-6 h-6 text-gray-900" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="min-h-[200px] flex flex-col justify-center">
+                                        <p class="text-lg md:text-xl text-gray-700 mb-8">
+                                            "As a kid, I was very disruptive and distracting, and I just didn't know how to control that. No kid usually does, the best anyone can do is try to help them. And, honestly, Sifu did do that. I learned teamwork, meditation, everything takes time and patience...and understanding that it's okay to fail as long as, you know, you continue to try."
+                                        </p>
+                                        <div class="flex items-center gap-4">
+                                            <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                                                <span class="text-primary font-bold text-lg">B</span>
+                                            </div>
+                                            <div>
+                                                <p class="font-bold text-gray-900">Bakari</p>
+                                                <p class="text-gray-600 text-sm">Student, started 2006</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Testimonial: Daro -->
+                            <div class="testimonial-slide w-full flex-shrink-0 px-4">
+                                <div class="relative bg-white rounded-3xl p-8 md:p-12 shadow-xl border-l-4 border-[#D4AF37] hover:shadow-2xl transition-shadow">
+                                    <div class="absolute top-6 left-8 w-14 h-14 rounded-2xl bg-[#D4AF37] shadow-gold flex items-center justify-center -z-10">
+                                        <svg class="w-6 h-6 text-gray-900" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="min-h-[200px] flex flex-col justify-center">
+                                        <p class="text-lg md:text-xl text-gray-700 mb-8">
+                                            "Sifu was always welcoming, but he made sure that everything we did was done within discipline. You learn teamwork and about different cultures and, about different people integrating into one team."
+                                        </p>
+                                        <div class="flex items-center gap-4">
+                                            <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                                                <span class="text-primary font-bold text-lg">D</span>
+                                            </div>
+                                            <div>
+                                                <p class="font-bold text-gray-900">Daro</p>
+                                                <p class="text-gray-600 text-sm">Student, started 2015</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Testimonial 1 -->
+                            <div class="testimonial-slide w-full flex-shrink-0 px-4">
+                                <div class="relative bg-white rounded-3xl p-8 md:p-12 shadow-xl border-l-4 border-[#D4AF37] hover:shadow-2xl transition-shadow">
+                                    <div class="absolute top-6 left-8 w-14 h-14 rounded-2xl bg-[#D4AF37] shadow-gold flex items-center justify-center -z-10">
+                                        <svg class="w-6 h-6 text-gray-900" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="min-h-[200px] flex flex-col justify-center">
+                                        <p class="text-lg md:text-xl text-gray-700 mb-8">
+                                            "In a transient city like DC, it is difficult to find community spaces that are simultaneously close-knit and welcoming to newcomers or those just passing by. Somehow, Sifu Rahim has been able to create a place within Hung Tao Choy Mei that does both effortlessly. The instructors care for all the students while also paying attention to individual strengths, while the students support one another in and out of the classroom. The breadth of knowledge you gain of kung fu, Jowga history, drumming, and lion dance is incredible &mdash; no two classes ever feel the same!"
+                                        </p>
+                                        <div class="flex items-center gap-4">
+                                            <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                                                <span class="text-primary font-bold text-lg">C</span>
+                                            </div>
+                                            <div>
+                                                <p class="font-bold text-gray-900">Claudine</p>
+                                                <p class="text-gray-600 text-sm">Student, Adult Program</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Testimonial 2 -->
+                            <div class="testimonial-slide w-full flex-shrink-0 px-4">
+                                <div class="relative bg-white rounded-3xl p-8 md:p-12 shadow-xl border-l-4 border-[#D4AF37] hover:shadow-2xl transition-shadow">
+                                    <div class="absolute top-6 left-8 w-14 h-14 rounded-2xl bg-[#D4AF37] shadow-gold flex items-center justify-center -z-10">
+                                        <svg class="w-6 h-6 text-gray-900" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="min-h-[200px] flex flex-col justify-center">
+                                        <p class="text-base md:text-lg text-gray-700 mb-6 leading-relaxed">
+                                            "This will be [my child's] third year of summer camp.  It is a place where magic happens. The energy is very positive, just stepping into this space lifts my spirits every time. I love how the classes and camp bring children and teens of all different ages together, to work together, and learn from one another. It is really inspiring to watch the kids grow into positions where they can role model and demonstrate skills to others - you watch their confidence and poise grow too. Sifu Rahim Muhammad is such an amazing role model and teacher for the kids, as well as for their parents. He teaches discipline, kindness, non-judgmental behavior, and the importance of health and wellbeing. The physical skills my son has learned are awesome - they include coordination, speed, agility, mobility, strength, and endurance.  Even more importantly, he has learned to be a good listener, patient, and a kinder person. He values the friendships that he has built here over two years. Our lives in DC are immensely better thanks to the efforts of Sifu and his team."
+                                        </p>
+                                        <div class="flex items-center gap-4">
+                                            <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                                                <span class="text-primary font-bold text-lg">K</span>
+                                            </div>
+                                            <div>
+                                                <p class="font-bold text-gray-900">Katy</p>
+                                                <p class="text-gray-600 text-sm">Parent</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Testimonial 3 -->
+                            <div class="testimonial-slide w-full flex-shrink-0 px-4">
+                                <div class="relative bg-white rounded-3xl p-8 md:p-12 shadow-xl border-l-4 border-[#D4AF37] hover:shadow-2xl transition-shadow">
+                                    <div class="absolute top-6 left-8 w-14 h-14 rounded-2xl bg-[#D4AF37] shadow-gold flex items-center justify-center -z-10">
+                                        <svg class="w-6 h-6 text-gray-900" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="min-h-[200px] flex flex-col justify-center">
+                                        <p class="text-lg md:text-xl text-gray-700 mb-8">
+                                            "I like that Jow Ga has a long history in the city...the school has a chill, family-like environment. It's open to all ages and they work with you depending on what your goals are, and I was able to learn a lot of forms - I kind of knew I wouldn't be able to stay in the city forever, but once you learn a form, you keep it in your head and can work on it wherever you find yourself."
+                                        </p>
+                                        <div class="flex items-center gap-4">
+                                            <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                                                <span class="text-primary font-bold text-lg">J</span>
+                                            </div>
+                                            <div>
+                                                <p class="font-bold text-gray-900">Jake</p>
+                                                <p class="text-gray-600 text-sm">Student, Adult Program</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                    <!-- Navigation Arrows -->
+                    <button id="prevTestimonial" class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 w-12 h-12 rounded-full bg-white shadow-lg hover:bg-primary hover:shadow-xl transition-all flex items-center justify-center group">
+                        <svg class="w-6 h-6 text-gray-900 group-hover:text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                        </svg>
+                    </button>
+                    <button id="nextTestimonial" class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 w-12 h-12 rounded-full bg-white shadow-lg hover:bg-primary hover:shadow-xl transition-all flex items-center justify-center group">
+                        <svg class="w-6 h-6 text-gray-900 group-hover:text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </button>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+    
+    <!-- History Section -->
+    <section id="history" class="py-12 md:py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="font-bebas text-4xl md:text-5xl lg:text-6xl text-gray-900">Our History & Achievements</h2>
+            </div>
+            
+            <div class="space-y-16">
+                <!-- 2024 Malaysian Embassy -->
+                <div class="grid lg:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary text-gray-900 text-sm font-bold mb-4">
+                            2024
+                        </div>
+                        <h3 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4" style="font-family: Inter, system-ui, sans-serif;">Malaysian Embassy Dragon Dance</h3>
+                        <p class="text-lg">
+                            Performed at the Malaysian Embassy for Chinese New Year celebrations, earning official recognition.
+                        </p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="rounded-2xl overflow-hidden shadow-lg">
+                            <img src="images/jowga/gold-dragon.jpg" 
+                                 alt="Gold Dragon Performance" 
+                                 class="w-full aspect-[4/3] object-cover clickable-image">
+                        </div>
+                        <div class="rounded-2xl overflow-hidden shadow-lg">
+                            <img src="images/jowga/malaysia-cny-2024.jpg" 
+                                 alt="Malaysian Embassy Performance" 
+                                 class="w-full aspect-[4/3] object-cover clickable-image">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 2009 DC Council Recognition -->
+                <div class="grid lg:grid-cols-2 gap-8 items-center">
+                    <div class="lg:order-2">
+                        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary text-gray-900 text-sm font-bold mb-4">
+                            2009
+                        </div>
+                        <h3 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4" style="font-family: Inter, system-ui, sans-serif;">DC City Council Recognition</h3>
+                        <p class="text-lg">
+                            Official recognition from the DC City Council for outstanding community service and cultural contributions.
+                        </p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 lg:order-1">
+                        <div class="rounded-2xl overflow-hidden shadow-lg">
+                            <img src="images/jowga/dc-council-resolution.jpg" 
+                                 alt="DC Council Resolution Page 1" 
+                                 class="w-full aspect-[4/3] object-cover clickable-image">
+                        </div>
+                        <div class="rounded-2xl overflow-hidden shadow-lg">
+                            <img src="images/jowga/building-front.jpg" 
+                                 alt="HTCMLI Building" 
+                                 class="w-full aspect-[4/3] object-cover clickable-image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Donation CTA Section -->
+    <section class="py-12 md:py-20 relative overflow-hidden" aria-labelledby="donate-title">
+        <!-- Background Image -->
+        <div class="absolute inset-0">
+            <img src="images/jowga/fiesta-asia-2013.jpg" 
+                 alt="" 
+                 class="w-full h-full object-cover" 
+                 loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-br from-secondary/80 via-secondary/70 to-secondary/60"></div>
+        </div>
+
+        <!-- Content -->
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-4xl mx-auto text-center space-y-8">
+                <div>
+                    <h2 id="donate-title" class="font-bebas text-4xl md:text-5xl lg:text-6xl text-white leading-tight">
+                        Empower the next generation of <span class="text-primary">leaders</span>
+                    </h2>
+                </div>
+
+                <p class="text-xl text-gray-200 mx-auto" style="max-width: 48rem;">
+                    Your donation is an investment in our community and directly benefits the free children's programs we provide to DC kids. Together, we can expand our reach and empower more young leaders.
+                </p>
+
+                <div class="flex flex-wrap gap-4 justify-center pt-4">
+                    <a href="donate.html" 
+                       class="px-8 py-4 bg-primary text-gray-900 rounded-full font-bold text-lg hover:brightness-110 transition-all shadow-gold hover:shadow-xl hover:scale-105 transform">
+                        Make a Donation
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+  <footer role="contentinfo">
+    <div class="container" id="contact">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a href="index.html" aria-label="Home">
+            <img class="site-logo" src="images/jowga/logo.png" alt="Hung Tao Choy Mei Leadership Institute" width="335" height="44" loading="lazy" decoding="async" />
+          </a>
+          <div style="height:1rem"></div>
+          <div class="footer-list">
+            <div class="contact-item">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a7 7 0 0 1 7 7c0 5.25-7 13-7 13S5 14.25 5 9a7 7 0 0 1 7-7m0 9.5A2.5 2.5 0 1 0 12 6a2.5 2.5 0 0 0 0 5.5"/></svg>
+              <div><a href="https://www.google.com/maps/search/?api=1&query=1351+U+Street+NW,+Washington,+DC+20009" target="_blank" rel="noopener">1351 U Street NW, Washington, DC 20009</a></div>
+            </div>
+            <div class="contact-item" style="margin-top:0.5rem;">
+              <div style="font-weight:400;font-size:1rem;"><a href="contact.html">Contact Us &rarr;</a></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h2>Quick Links</h2>
+          <ul class="footer-list">
+            <li><a href="children_program.html">Kids Programs (FREE)</a></li>
+            <li><a href="adult-program.html">Adult Classes</a></li>
+            <li><a href="https://www.peerspace.com/pages/listings/5aaab30bb5c4b156000c8347" target="_blank" rel="noopener noreferrer">Book Our Studio</a></li>
+            <li><a href="core-curriculum.html">What We Teach</a></li>
+            <li><a href="about-us.html">About Us</a></li>
+            <li><a href="our-team.html">Our Team</a></li>
+            <li><a href="donate.html">Donate</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h2>Follow Us</h2>
+          <div class="social">
+            <a href="https://www.instagram.com/hungtaochoymei" rel="noopener" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5m10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3m-5 4.5A5.5 5.5 0 1 1 6.5 12 5.5 5.5 0 0 1 12 8.5m0 2A3.5 3.5 0 1 0 15.5 12 3.5 3.5 0 0 0 12 10.5M18 6.2a1 1 0 1 1-1 1 1 1 0 0 1 1-1"/></svg>
+              <span class="visually-hidden">Instagram</span>
+            </a>
+            <a href="https://youtube.com/@htcmrahim?si=JBiVO7Yl-VWsVz7-" rel="noopener" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.6 7.2a3 3 0 0 0-2.1-2.1C17.7 4.6 12 4.6 12 4.6s-5.7 0-7.5.5A3 3 0 0 0 2.4 7.2 31.4 31.4 0 0 0 2 12a31.4 31.4 0 0 0 .4 4.8 3 3 0 0 0 2.1 2.1c1.8.5 7.5.5 7.5.5s5.7 0 7.5-.5a3 3 0 0 0 2.1-2.1A31.4 31.4 0 0 0 22 12a31.4 31.4 0 0 0-.4-4.8M10 15.5v-7l6 3.5z"/></svg>
+              <span class="visually-hidden">YouTube</span>
+            </a>
+            <a href="https://universeodon.com/@jowgadc" rel="noopener" aria-label="Mastodon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.6 11.4c0 4.7-3.1 9.6-9.6 9.6-1.1 0-2.1-.1-3-.3-2.9-.6-5-2.5-5.4-5.6-.4-3.2-.5-6.7-.3-9.1C3.6 3.4 6.3 2 8.8 2h6.4c2.6 0 5.2 1.4 5.4 4.1.1 1.6.1 3.6 0 5.3zM17.9 6.8c-.1-1.2-1.2-2.1-2.5-2.1h-1.4c-.8 0-1.6.4-2.1 1.1-.5-.7-1.3-1.1-2.1-1.1H8.4c-1.3 0-2.4.9-2.5 2.1-.1 1.2-.1 2.6 0 3.9.2 2 1.8 2.6 3.3 2.7.6 0 1.2-.2 1.7-.6v1.3c-1.2.3-2.4.3-3.6.1-1.6-.3-2.4-1.4-2.5-3.4-.2-2.4-.2-5.3 0-7.7.2-2.5 2.6-3.3 4.4-3.3h5.3c1.8 0 4.2.8 4.4 3.3.2 2.4.2 5.3 0 7.7-.1 2-1 3.1-2.5 3.4-1.2.2-2.4.2-3.6-.1v-1.3c.5.4 1.1.6 1.7.6 1.5-.1 3.1-.7 3.3-2.7.1-1.3.1-2.7 0-3.9z"/></svg>
+              <span class="visually-hidden">Mastodon</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h2>Resources</h2>
+          <ul class="footer-list">
+            <li><a href="#" class="js-coming-soon">2026 Schedule</a></li>
+            <li><a href="#" class="js-coming-soon">Events Calendar</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="margin-top:3rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,.1);text-align:center">
+        <p>&copy; 2026 Hung Tao Choy Mei Leadership Institute. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lightbox Modal -->
+  <div id="lightbox" class="lightbox">
+    <span class="lightbox-close" id="lightboxClose">&times;</span>
+    <img class="lightbox-content" id="lightboxImage">
+  </div>
+
+  <script>
+    (function(){
+      const navToggle=document.querySelector('.nav-toggle');
+      const navMain=document.querySelector('#primary-nav');
+      const menuItems=Array.from(document.querySelectorAll('.menu-item'));
+
+      function closeAll(except){
+        menuItems.forEach(li=>{
+          if(except && li===except) return;
+          li.dataset.open='false';
+          const btn=li.querySelector('button.nav-link');
+          if(btn) btn.setAttribute('aria-expanded','false');
+        });
+      }
+
+      function openDropdown(li){
+        closeAll(li);
+        li.dataset.open='true';
+        const btn=li.querySelector('button.nav-link');
+        if(btn) btn.setAttribute('aria-expanded','true');
+      }
+
+      navToggle?.addEventListener('click',()=>{
+        const open=navMain.getAttribute('data-open')==='true';
+        navMain.setAttribute('data-open',String(!open));
+        navToggle.setAttribute('aria-expanded',String(!open));
+        if(open) closeAll();
+      });
+
+      menuItems.forEach(li=>{
+        const btn=li.querySelector('button.nav-link');
+        if(!btn) return;
+        
+        // Click handler for mobile
+        btn.addEventListener('click',(e)=>{
+          e.preventDefault();
+          const isOpen=li.dataset.open==='true';
+          closeAll(li);
+          li.dataset.open=String(!isOpen);
+          btn.setAttribute('aria-expanded',String(!isOpen));
+        });
+
+        // Hover handler for desktop - open on hover
+        li.addEventListener('mouseenter',()=>{
+          if(window.innerWidth > 980){
+            openDropdown(li);
+          }
+        });
+
+        // Close only when mouse leaves the entire menu item (including dropdown)
+        li.addEventListener('mouseleave',()=>{
+          if(window.innerWidth > 980){
+            setTimeout(()=>{
+              if(!li.matches(':hover')){
+                li.dataset.open='false';
+                btn.setAttribute('aria-expanded','false');
+              }
+            }, 100);
+          }
+        });
+      });
+
+      document.addEventListener('click',(e)=>{
+        const t=e.target;
+        if(!(t instanceof Element)) return;
+        if(!t.closest('.nav-main')) closeAll();
+      });
+
+            document.addEventListener('keydown',(e)=>{ if(e.key==='Escape') closeAll(); });
+
+      // Coming Soon toast for not-yet-available links
+      var comingSoonTimer;
+      document.querySelectorAll('a.js-coming-soon').forEach(function(link){
+        link.addEventListener('click', function(e){
+          e.preventDefault();
+          closeAll();
+          if (navMain) navMain.setAttribute('data-open','false');
+          if (navToggle) navToggle.setAttribute('aria-expanded','false');
+          var comingSoonToast = document.getElementById('comingSoonToast');
+          if (!comingSoonToast) return;
+          comingSoonToast.classList.add('show');
+          clearTimeout(comingSoonTimer);
+          comingSoonTimer = setTimeout(function(){
+            comingSoonToast.classList.remove('show');
+          }, 2200);
+        });
+      });
+    })();
+
+    // ============================================
+    // ANIMATED COUNTER FOR STATS
+    // ============================================
+    function animateCounter(element, target) {
+      const duration = 2000; // 2 seconds
+      const steps = 60;
+      const increment = target / steps;
+      let current = 0;
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          element.textContent = target.toLocaleString();
+          clearInterval(timer);
+        } else {
+          element.textContent = Math.floor(current).toLocaleString();
+        }
+      }, duration / steps);
+    }
+
+    // Intersection Observer for stat counters
+    const statObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && entry.target.textContent === '0') {
+          const target = parseInt(entry.target.dataset.target);
+          animateCounter(entry.target, target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.stat-card [data-target]').forEach(el => {
+      statObserver.observe(el);
+    });
+
+    // ============================================
+    // TESTIMONIAL SLIDER
+    // ============================================
+    (function() {
+      let currentSlide = 0;
+      const slides = document.querySelectorAll('.testimonial-slide');
+      const track = document.querySelector('.testimonial-track');
+      const dots = document.querySelectorAll('.testimonial-dot');
+      const prevBtn = document.getElementById('prevTestimonial');
+      const nextBtn = document.getElementById('nextTestimonial');
+      
+      if (!track || slides.length === 0) return;
+
+      function goToSlide(index) {
+        currentSlide = (index + slides.length) % slides.length;
+        track.style.transform = `translateX(-${currentSlide * 100}%)`;
+        
+        // Update dots
+        dots.forEach((dot, i) => {
+          if (i === currentSlide) {
+            dot.classList.remove('w-3', 'h-3', 'bg-gray-300');
+            dot.classList.add('w-8', 'h-3', 'bg-primary');
+          } else {
+            dot.classList.remove('w-8', 'h-3', 'bg-primary');
+            dot.classList.add('w-3', 'h-3', 'bg-gray-300');
+          }
+        });
+      }
+
+      // Button controls
+      prevBtn?.addEventListener('click', () => goToSlide(currentSlide - 1));
+      nextBtn?.addEventListener('click', () => goToSlide(currentSlide + 1));
+
+      // Dot controls
+      dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => goToSlide(index));
+      });
+
+      // Auto-advance disabled per user request
+      // setInterval(() => {
+      //   goToSlide(currentSlide + 1);
+      // }, 6000);
+
+      // Touch/swipe support
+      let touchStartX = 0;
+      let touchEndX = 0;
+      
+      track.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      });
+      
+      track.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        if (touchStartX - touchEndX > 50) {
+          goToSlide(currentSlide + 1);
+        } else if (touchEndX - touchStartX > 50) {
+          goToSlide(currentSlide - 1);
+        }
+      });
+    })();
+
+    // ============================================
+    // SCROLL ANIMATIONS FOR ELEMENTS
+    // ============================================
+    // Add scroll animation to sections (skipped entirely if IntersectionObserver
+    // is unavailable or setup fails, so content is never left hidden)
+    document.addEventListener('DOMContentLoaded', () => {
+      if (!('IntersectionObserver' in window)) return;
+      try {
+        const scrollObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.style.opacity = '1';
+              entry.target.style.transform = 'translateY(0)';
+            }
+          });
+        }, { threshold: 0.1, rootMargin: '0px 0px -100px 0px' });
+
+        const animatedElements = document.querySelectorAll('section > div');
+        animatedElements.forEach(el => {
+          el.style.opacity = '0';
+          el.style.transform = 'translateY(30px)';
+          el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+          scrollObserver.observe(el);
+        });
+      } catch (e) {
+        document.querySelectorAll('section > div').forEach(el => {
+          el.style.opacity = '1';
+          el.style.transform = 'none';
+        });
+      }
+    });
+
+    // ============================================
+    // LIGHTBOX FUNCTIONALITY
+    // ============================================
+    (function() {
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightboxImage');
+      const lightboxClose = document.getElementById('lightboxClose');
+      const clickableImages = document.querySelectorAll('.clickable-image');
+
+      // Open lightbox when clicking on images
+      clickableImages.forEach(img => {
+        img.addEventListener('click', () => {
+          lightbox.classList.add('active');
+          lightboxImg.src = img.src;
+          lightboxImg.alt = img.alt;
+          document.body.style.overflow = 'hidden'; // Prevent scrolling
+        });
+      });
+
+      // Close lightbox when clicking X
+      lightboxClose.addEventListener('click', () => {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = ''; // Restore scrolling
+      });
+
+      // Close lightbox when clicking outside the image
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) {
+          lightbox.classList.remove('active');
+          document.body.style.overflow = ''; // Restore scrolling
+        }
+      });
+
+      // Close lightbox with Escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+          lightbox.classList.remove('active');
+          document.body.style.overflow = ''; // Restore scrolling
+        }
+      });
+    })();
+  </script>
+
+  <!-- Coming Soon Toast -->
+  <div id="comingSoonToast" class="coming-soon-toast" role="status" aria-live="polite">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+    <span>Coming soon!</span>
+  </div>
+</body>
+</html>

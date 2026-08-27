@@ -1,0 +1,755 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adult Program | Hung Tao Choy Mei Leadership Institute</title>
+    <meta name="description" content="Jow Ga Kung Fu classes for adults of all ages in Washington, DC. Flexible schedule, affordable tuition, and free trial class!">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Hung Tao Choy Mei Leadership Institute">
+    <meta property="og:title" content="Adult Program | Hung Tao Choy Mei Leadership Institute">
+    <meta property="og:description" content="Jow Ga Kung Fu classes for adults of all ages in Washington, DC. Flexible schedule, affordable tuition, and free trial class!">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="images/jowga/favicon.ico" type="image/vnd.microsoft.icon">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS (precompiled: npx tailwindcss -c tailwind.config.js -i tailwind.input.css -o css/tailwind.css --minify) -->
+    <link rel="stylesheet" href="css/tailwind.css">
+
+    <style>
+        /* Fix horizontal scroll / shift issue */
+        html, body { overflow-x: hidden; max-width: 100vw; }
+
+        /* Logo styling */
+        .site-logo { filter: invert(1) brightness(2); }
+
+        /* Header / nav styles */
+        .site-header { background: #000; color: #fff; }
+        .navbar { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 1.5rem; padding: 1.25rem 0; }
+        .brand { display: flex; align-items: center; gap: .75rem; text-decoration: none; color: #fff; font-weight: 800; }
+        .brand img { display: block; transform: scale(1.15); }
+        .nav-toggle { display: none; border: 1px solid rgba(255,255,255,.25); background: rgba(255,255,255,.08); color: #fff; border-radius: 12px; padding: .7rem 1rem; font-weight: 700; font-size: 1.05rem; }
+
+        nav[aria-label="Primary"] ul { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; justify-content: space-evenly; gap: .5rem; flex-wrap: wrap; width: 100%; }
+        .menu-item { position: relative; }
+        .nav-link { color: #fff; text-decoration: none; display: inline-flex; align-items: center; gap: .4rem; padding: .7rem .8rem; border-radius: 12px; position: relative; transition: transform 140ms ease, background 140ms ease, box-shadow 140ms ease; font-size: .95rem; font-weight: 600; }
+        .nav-link:hover { background: rgba(255,255,255,.10); transform: translateY(-1px); box-shadow: 0 6px 14px rgba(0,0,0,.25); }
+        .nav-link::after { content: ""; position: absolute; left: .7rem; right: .7rem; bottom: .35rem; height: 2px; background: rgba(240,199,36,.9); transform: scaleX(0); transform-origin: left; transition: transform 160ms ease; border-radius: 999px; }
+        .nav-link:hover::after { transform: scaleX(1); }
+        button.nav-link { border: 0; background: transparent; font: inherit; cursor: pointer; }
+
+        .dropdown { position: absolute; left: 0; top: calc(100% + .35rem); min-width: 15rem; background: #fff; color: #1b1b1b; border: 1px solid rgba(0,0,0,.14); border-radius: 14px; box-shadow: 0 10px 24px rgba(0,0,0,.10); padding: .4rem; display: none; z-index: 20; }
+        .dropdown a { display: block; padding: .6rem .75rem; border-radius: 10px; color: #1b1b1b; text-decoration: none; }
+        .dropdown a:hover { background: rgba(13,110,253,.08); }
+        .menu-item[data-open="true"]>.dropdown { display: block; }
+
+        .nav-actions { display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; justify-content: flex-end; }
+        .nav-actions .btn { transition: transform 140ms ease, box-shadow 140ms ease; }
+        .nav-actions .btn:hover { transform: translateY(-1px); box-shadow: 0 8px 18px rgba(0,0,0,.28); }
+        .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: .7rem 1.35rem; border-radius: 999px; border: 1px solid rgba(255,255,255,.25); background: transparent; color: #fff; text-decoration: none; font-weight: 700; font-size: 1.05rem; }
+        .btn:hover { background: rgba(255,255,255,.10); }
+        .btn--donate { background: #f0c724; border-color: rgba(0,0,0,.2); color: #000; box-shadow: 0 0 10px rgba(240,199,36,.28); }
+        .nav-main { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 1rem; }
+
+        @media (max-width:1150px){
+            .nav-toggle{display:inline-flex;justify-self:end}
+            .nav-main { display: none; }
+            .nav-main[data-open="true"]{display:block;grid-column:1 / -1;background:#000}
+            .navbar{grid-template-columns:1fr auto}
+            .brand img{transform:none;max-width:min(300px,60vw);height:auto}
+            nav[aria-label="Primary"] ul { flex-direction: column; align-items: stretch; padding: .5rem 0; justify-content: flex-start; }
+            .dropdown { position: static; box-shadow: none; }
+            .menu-item { width: 100%; }
+            .nav-link { width: 100%; justify-content: space-between; }
+            .nav-actions { width: 100%; justify-content: flex-start; padding: .25rem 0 .5rem; }
+        }
+
+        /* Footer */
+        footer { background: #111; color: #fff; padding: 3rem 0; }
+        .footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+        footer h2 { font-size: 1.25rem; margin: 0 0 .75rem; font-weight: 800; }
+        .footer-col a { color: #fff; text-decoration: none; transition: color 0.3s ease; }
+        .footer-col a:hover { color: #f0c724; }
+        .footer-list { list-style: none; margin: 0; padding: 0; display: grid; gap: .5rem; }
+        .contact-item { display: flex; gap: .6rem; align-items: flex-start; }
+        .icon { width: 20px; height: 20px; flex: 0 0 20px; opacity: .95; margin-top: .15rem; }
+        .social { display: flex; gap: .75rem; align-items: center; flex-wrap: wrap; }
+        .social a { display: inline-flex; align-items: center; gap: .5rem; text-decoration: none; padding: .45rem .65rem; border: 1px solid rgba(255,255,255,.22); border-radius: 999px; background: rgba(255,255,255,.06); }
+        .social a:hover { background: rgba(255,255,255,.12); }
+        .social svg { width: 18px; height: 18px; display: block; }
+        .visually-hidden { position: absolute!important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+        .container { width: min(100% - 2rem, 1320px); margin-inline: auto; }
+
+        @media (max-width:980px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+        @media (max-width:560px) { .footer-grid { grid-template-columns: 1fr; } }
+
+        /* Typography */
+        p { line-height: 1.7; color: #4b5563; }
+        h1 { line-height: 1.1; }
+        h2 { line-height: 1.2; }
+        .text-center p { margin-left: auto; margin-right: auto; }
+        
+        /* Shadow utility for CTA */
+        .shadow-gold { box-shadow: 0 8px 32px hsla(47, 87%, 54%, 0.3); }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: hsl(0, 0%, 9%); }
+        ::-webkit-scrollbar-thumb { background: hsl(47, 87%, 54%); border-radius: 5px; }
+
+        /* Coming Soon Toast */
+        .coming-soon-toast {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #111;
+            color: #fff;
+            padding: 0.8rem 1.25rem;
+            border-radius: 999px;
+            border: 1px solid #f0c724;
+            box-shadow: 0 8px 24px rgba(0,0,0,.35);
+            font-size: 0.9rem;
+            font-weight: 600;
+            z-index: 10000;
+            opacity: 0;
+            transform: translateY(12px);
+            pointer-events: none;
+            transition: opacity 0.25s ease, transform 0.25s ease;
+        }
+        .coming-soon-toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .coming-soon-toast svg {
+            width: 18px;
+            height: 18px;
+            color: #f0c724;
+            flex-shrink: 0;
+        }
+        @media (max-width: 480px) {
+            .coming-soon-toast {
+                left: 1rem;
+                right: 1rem;
+                bottom: 1rem;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-900 font-sans">
+    
+    <!-- Header/Navigation -->
+    <header class="site-header" role="banner">
+        <div class="container">
+            <div class="navbar">
+                <a href="index.html" class="brand" aria-label="HUNG TAO CHOY MEI LEADERSHIP INSTITUTE home"><img class="site-logo" src="images/jowga/logo.png" alt="Hung Tao Choy Mei Leadership Institute" width="335" height="44" loading="eager" decoding="async" /></a>
+
+                <button class="nav-toggle" type="button" aria-controls="primary-nav" aria-expanded="false">Menu</button>
+
+                <div class="nav-main" id="primary-nav" data-open="false">
+                    <nav aria-label="Primary">
+                        <ul>
+                            <li class="menu-item">
+                                <button class="nav-link" type="button" aria-haspopup="true" aria-expanded="false">Offerings <span aria-hidden="true">&#9662;</span></button>
+                                <div class="dropdown" role="menu">
+                                    <a role="menuitem" href="children_program.html">Kids Programs (FREE)</a>
+                                    <a role="menuitem" href="adult-program.html">Adult Classes</a>
+                                    <a role="menuitem" href="https://www.peerspace.com/pages/listings/5aaab30bb5c4b156000c8347" target="_blank" rel="noopener noreferrer">Book Our Studio</a>
+                                    <a role="menuitem" href="#" class="js-coming-soon">Book a Performance</a>
+                                </div>
+                            </li>
+
+                            <li class="menu-item"><a class="nav-link" href="core-curriculum.html" style="font-weight: 400; font-size: 0.95rem;">What We Teach</a></li>
+
+                            <li class="menu-item">
+                                <button class="nav-link" type="button" aria-haspopup="true" aria-expanded="false">About <span aria-hidden="true">&#9662;</span></button>
+                                <div class="dropdown" role="menu">
+                                    <a role="menuitem" href="about-us.html">About Us</a>
+                                    <a role="menuitem" href="index.html#history">Our History</a>
+                                    <a role="menuitem" href="our-team.html">Our Team</a>
+                                    <a role="menuitem" href="jow-ga-explained.html">Jow Ga Explained</a>
+                                </div>
+                            </li>
+
+                            <li class="menu-item">
+                                <button class="nav-link" type="button" aria-haspopup="true" aria-expanded="false">Resources <span aria-hidden="true">&#9662;</span></button>
+                                <div class="dropdown" role="menu">
+                                    <a role="menuitem" href="#" class="js-coming-soon">2026 Schedule</a>
+                                    <a role="menuitem" href="#" class="js-coming-soon">Events Calendar</a>
+                                </div>
+                            </li>
+                            <li class="menu-item"><a class="nav-link" href="https://www.zeffy.com/en-US/ticketing/hung-tao-choy-mei-leadership-institutes-shop" target="_blank" rel="noopener noreferrer">Shop</a></li>
+                        </ul>
+                    </nav>
+
+                    <div class="nav-actions">
+                        <a class="btn btn--donate" href="donate.html">Donate</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Adult Program Header -->
+    <section class="pt-16 md:pt-20 pb-8 md:pb-12">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center">
+                    <h1 class="font-bebas text-5xl md:text-6xl lg:text-7xl text-gray-900 mb-6">
+                        Adult <span class="text-primary">Program</span>
+                    </h1>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                        Our adult program offers traditional Jow Ga Kung Fu training in a supportive environment. Classes are designed to accommodate busy schedules while building strength, discipline, and community.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Strengthen Your Mind and Body -->
+    <section class="py-12 md:py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+                    <!-- Text -->
+                    <div class="space-y-6">
+                        <h2 class="font-bebas text-4xl md:text-5xl text-gray-900 leading-tight">Strengthen Your Mind and Body</h2>
+
+                        <p class="text-lg text-gray-700 leading-relaxed">
+                            We understand the challenges of balancing demanding work schedules, travel commitments, and other responsibilities. We offer Jow Ga classes tailored for adults of all ages (18+) and a flexible class schedule allows you to train at your own pace, whether you're looking for short-term or long-term training.
+                        </p>
+
+                        <p class="text-lg text-gray-700 leading-relaxed">
+                            Drop in anytime for a free trial class. Simply fill out our quick sign-up form below to let us know when you plan on visiting!
+                        </p>
+
+                    </div>
+
+                    <!-- Image -->
+                    <div class="relative h-full">
+                        <div class="rounded-3xl overflow-hidden shadow-2xl h-full">
+                            <img src="images/jowga/geared-up.jpg"
+                                 alt="Four adults geared up for sparring"
+                                 class="w-full h-full object-cover"
+                                 loading="lazy">
+                        </div>
+                        <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-primary/20 rounded-full blur-3xl -z-10"></div>
+                        <div class="absolute -top-6 -left-6 w-32 h-32 bg-accent/20 rounded-full blur-3xl -z-10"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Schedule and Tuition Section -->
+    <section id="schedule" class="py-12 md:py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+                    <!-- Image -->
+                    <div class="relative h-full">
+                        <div class="rounded-3xl overflow-hidden shadow-2xl h-full">
+                            <img src="images/jowga/adult-class.jpg"
+                                 alt="Adult students posing after class"
+                                 class="w-full h-full object-cover"
+                                 loading="lazy">
+                        </div>
+                        <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-primary/20 rounded-full blur-3xl -z-10"></div>
+                        <div class="absolute -top-6 -left-6 w-32 h-32 bg-accent/20 rounded-full blur-3xl -z-10"></div>
+                    </div>
+
+                    <!-- Text Content -->
+                    <div class="space-y-6">
+                        <h2 class="font-bebas text-4xl md:text-5xl text-gray-900 leading-tight">
+                            Schedule and Tuition
+                        </h2>
+
+                        <div class="space-y-3">
+                            <div class="bg-primary/10 p-4 rounded-xl">
+                                <p class="text-lg text-gray-700"><strong>Monday-Friday:</strong> 6:30pm - 7:30pm</p>
+                            </div>
+                            <div class="bg-primary/10 p-4 rounded-xl">
+                                <p class="text-lg text-gray-700"><strong>Saturdays:</strong> 3:30pm - 4:30pm</p>
+                            </div>
+                            <div class="bg-primary/10 p-4 rounded-xl">
+                                <p class="text-lg text-gray-700"><strong>Sundays:</strong> 1pm - 3pm</p>
+                            </div>
+                        </div>
+
+                        <p class="text-lg text-gray-700 leading-relaxed">
+                            Students may attend classes as often as they wish. All we ask is that when you attend, you come ready to work hard and give it your best.
+                        </p>
+
+                        <p class="text-lg text-gray-700 leading-relaxed">
+                            We do not require any long-term contract and do not charge direct-debit.
+                        </p>
+
+                        <div class="mt-6">
+                            <div class="flex gap-4">
+                                <div class="flex-1 bg-primary/10 p-4 rounded-xl text-center border-2 border-primary/30">
+                                    <div class="font-bebas text-4xl text-primary">$90</div>
+                                    <div class="text-sm text-gray-600">Per Month</div>
+                                </div>
+                                <div class="flex-1 bg-primary/10 p-4 rounded-xl text-center border-2 border-primary/30">
+                                    <div class="font-bebas text-4xl text-primary">$50</div>
+                                    <div class="text-sm text-gray-600">Uniform Fee</div>
+                                </div>
+                            </div>
+
+                            <p class="text-sm text-gray-600 italic mt-2">Uniform includes t-shirt, pants, and sash</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- How to Enroll Section - Streamlined 2-Step Process -->
+    <section id="enroll" class="py-12 md:py-16 bg-gradient-to-br from-primary/10 to-primary/20">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-10">
+                <h2 class="font-bebas text-4xl md:text-5xl text-gray-900 leading-tight mb-4">
+                    How to <span class="text-primary">Get Started</span>
+                </h2>
+                <p class="text-lg text-gray-700 leading-relaxed max-w-2xl mx-auto">
+                    Join us in just two simple steps. Start with a <strong>free trial class</strong>, and if you love it, enroll and begin your training right away.
+                </p>
+            </div>
+
+            <!-- Two-Step Cards -->
+            <div class="grid md:grid-cols-2 md:items-start gap-6 mb-8 max-w-5xl mx-auto">
+                <!-- Step 1: Free Trial -->
+                <div class="bg-white rounded-2xl shadow-lg border-2 border-primary/40 hover:shadow-xl transition-shadow p-6 flex flex-col">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 bg-yellow-400 text-gray-900 rounded-full flex items-center justify-center font-bold text-xl flex-shrink-0">1</div>
+                        <h3 class="font-bebas text-2xl text-gray-900 leading-tight">Book Your Free Trial Class</h3>
+                    </div>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-5 flex-grow">Fill out a quick form to let us know when you're coming. Takes less than 2 minutes!</p>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfQYybKARKq2AwAmR9vtAO18DfnBjYsnPR_sw83gvKWi5_zUw/viewform?usp=publish-editor"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="inline-flex items-center justify-center w-full px-6 py-3 bg-primary text-gray-900 rounded-full font-bold text-lg hover:brightness-110 transition-all shadow-md">
+                        Sign Up for Free Trial
+                        <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Step 2: Pay Tuition -->
+                <div class="bg-white rounded-2xl shadow-lg border-2 border-primary/40 hover:shadow-xl transition-shadow p-6 flex flex-col">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 bg-yellow-400 text-gray-900 rounded-full flex items-center justify-center font-bold text-xl flex-shrink-0">2</div>
+                        <h3 class="font-bebas text-2xl text-gray-900 leading-tight">Enroll & Pay Monthly Tuition</h3>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed mb-5 flex-grow">Loved your first class? Complete enrollment and start your training journey.</p>
+                    <button onclick="openTuitionModal()"
+                            class="inline-flex items-center justify-center w-full px-6 py-3 bg-secondary text-white rounded-full font-bold text-lg hover:bg-gray-800 transition-all shadow-md">
+                        Pay Monthly Tuition
+                        <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+                        </svg>
+                    </button>
+                    <p class="text-xs text-gray-500 leading-relaxed mt-3">
+                        Zeffy charges us $0 in fees to process this payment, but they will ask for an optional tip at checkout to keep their platform running for nonprofits. You're welcome to change this tip amount to 'Other' and enter $0 if you prefer.
+                    </p>
+                </div>
+            </div>
+
+            <!-- What to Expect Section -->
+            <div class="bg-white rounded-2xl p-6 md:p-8 shadow-md max-w-5xl mx-auto">
+                <h3 class="font-bebas text-3xl text-gray-900 mb-6 text-center">What to Expect at Your First Class</h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-3">
+                            <svg class="w-6 h-6 text-yellow-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            <div>
+                                <h4 class="font-bold text-gray-900 mb-1">What to Wear</h4>
+                                <p class="text-gray-700 text-sm">Comfortable athletic clothing and clean sport shoes</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <svg class="w-6 h-6 text-yellow-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            <div>
+                                <h4 class="font-bold text-gray-900 mb-1">When to Arrive</h4>
+                                <p class="text-gray-700 text-sm">Arrive 10 minutes before class starts (6:30pm Mon-Fri)</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-3">
+                            <svg class="w-6 h-6 text-yellow-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            <div>
+                                <h4 class="font-bold text-gray-900 mb-1">All Skill Levels Welcome</h4>
+                                <p class="text-gray-700 text-sm">No experience needed &mdash; we'll meet you where you're at</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <svg class="w-6 h-6 text-yellow-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            <div>
+                                <h4 class="font-bold text-gray-900 mb-1">Have Questions?</h4>
+                                <p class="text-gray-700 text-sm"><a href="contact.html" class="text-blue-600 hover:underline font-semibold">Contact Us &rarr;</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Donation CTA Section -->
+    <section class="py-20 md:py-28 relative overflow-hidden" aria-labelledby="donate-title">
+        <!-- Background Image -->
+        <div class="absolute inset-0">
+            <img src="images/jowga/fiesta-asia-2013.jpg" 
+                 alt="" 
+                 class="w-full h-full object-cover" 
+                 loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-br from-secondary/80 via-secondary/70 to-secondary/60"></div>
+        </div>
+
+        <!-- Content -->
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-4xl mx-auto text-center space-y-8">
+                <div>
+                    <h2 id="donate-title" class="font-bebas text-4xl md:text-5xl lg:text-6xl text-white leading-tight">
+                        Empower the next generation of <span class="text-primary">leaders</span>
+                    </h2>
+                </div>
+
+                <p class="text-xl text-gray-200 leading-relaxed max-w-3xl mx-auto">
+                    Your donation is an investment in our community and directly benefits the free children's programs we provide to DC kids. Together, we can expand our reach and empower more young leaders.
+                </p>
+
+                <div class="flex flex-wrap gap-4 justify-center pt-4">
+                    <a href="donate.html" 
+                       class="px-8 py-4 bg-primary text-gray-900 rounded-full font-bold text-lg hover:brightness-110 transition-all shadow-gold hover:shadow-xl hover:scale-105 transform">
+                        Make a Donation
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+  <footer role="contentinfo">
+    <div class="container" id="contact">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a href="index.html" aria-label="Home">
+            <img class="site-logo" src="images/jowga/logo.png" alt="Hung Tao Choy Mei Leadership Institute" width="335" height="44" loading="lazy" decoding="async" />
+          </a>
+          <div style="height:1rem"></div>
+          <div class="footer-list">
+            <div class="contact-item">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a7 7 0 0 1 7 7c0 5.25-7 13-7 13S5 14.25 5 9a7 7 0 0 1 7-7m0 9.5A2.5 2.5 0 1 0 12 6a2.5 2.5 0 0 0 0 5.5"/></svg>
+              <div><a href="https://www.google.com/maps/search/?api=1&query=1351+U+Street+NW,+Washington,+DC+20009" target="_blank" rel="noopener">1351 U Street NW, Washington, DC 20009</a></div>
+            </div>
+            <div class="contact-item" style="margin-top:0.5rem;">
+              <div style="font-weight:400;font-size:1rem;"><a href="contact.html">Contact Us &rarr;</a></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h2>Quick Links</h2>
+          <ul class="footer-list">
+            <li><a href="children_program.html">Kids Programs (FREE)</a></li>
+            <li><a href="adult-program.html">Adult Classes</a></li>
+            <li><a href="https://www.peerspace.com/pages/listings/5aaab30bb5c4b156000c8347" target="_blank" rel="noopener noreferrer">Book Our Studio</a></li>
+            <li><a href="core-curriculum.html">What We Teach</a></li>
+            <li><a href="about-us.html">About Us</a></li>
+            <li><a href="our-team.html">Our Team</a></li>
+            <li><a href="donate.html">Donate</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h2>Follow Us</h2>
+          <div class="social">
+            <a href="https://www.instagram.com/hungtaochoymei" rel="noopener" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5m10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3m-5 4.5A5.5 5.5 0 1 1 6.5 12 5.5 5.5 0 0 1 12 8.5m0 2A3.5 3.5 0 1 0 15.5 12 3.5 3.5 0 0 0 12 10.5M18 6.2a1 1 0 1 1-1 1 1 1 0 0 1 1-1"/></svg>
+              <span class="visually-hidden">Instagram</span>
+            </a>
+            <a href="https://youtube.com/@htcmrahim?si=JBiVO7Yl-VWsVz7-" rel="noopener" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.6 7.2a3 3 0 0 0-2.1-2.1C17.7 4.6 12 4.6 12 4.6s-5.7 0-7.5.5A3 3 0 0 0 2.4 7.2 31.4 31.4 0 0 0 2 12a31.4 31.4 0 0 0 .4 4.8 3 3 0 0 0 2.1 2.1c1.8.5 7.5.5 7.5.5s5.7 0 7.5-.5a3 3 0 0 0 2.1-2.1A31.4 31.4 0 0 0 22 12a31.4 31.4 0 0 0-.4-4.8M10 15.5v-7l6 3.5z"/></svg>
+              <span class="visually-hidden">YouTube</span>
+            </a>
+            <a href="https://universeodon.com/@jowgadc" rel="noopener" aria-label="Mastodon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.6 11.4c0 4.7-3.1 9.6-9.6 9.6-1.1 0-2.1-.1-3-.3-2.9-.6-5-2.5-5.4-5.6-.4-3.2-.5-6.7-.3-9.1C3.6 3.4 6.3 2 8.8 2h6.4c2.6 0 5.2 1.4 5.4 4.1.1 1.6.1 3.6 0 5.3zM17.9 6.8c-.1-1.2-1.2-2.1-2.5-2.1h-1.4c-.8 0-1.6.4-2.1 1.1-.5-.7-1.3-1.1-2.1-1.1H8.4c-1.3 0-2.4.9-2.5 2.1-.1 1.2-.1 2.6 0 3.9.2 2 1.8 2.6 3.3 2.7.6 0 1.2-.2 1.7-.6v1.3c-1.2.3-2.4.3-3.6.1-1.6-.3-2.4-1.4-2.5-3.4-.2-2.4-.2-5.3 0-7.7.2-2.5 2.6-3.3 4.4-3.3h5.3c1.8 0 4.2.8 4.4 3.3.2 2.4.2 5.3 0 7.7-.1 2-1 3.1-2.5 3.4-1.2.2-2.4.2-3.6-.1v-1.3c.5.4 1.1.6 1.7.6 1.5-.1 3.1-.7 3.3-2.7.1-1.3.1-2.7 0-3.9z"/></svg>
+              <span class="visually-hidden">Mastodon</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h2>Resources</h2>
+          <ul class="footer-list">
+            <li><a href="#" class="js-coming-soon">2026 Schedule</a></li>
+            <li><a href="#" class="js-coming-soon">Events Calendar</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="margin-top:3rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,.1);text-align:center">
+        <p>&copy; 2026 Hung Tao Choy Mei Leadership Institute. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Navigation Script -->
+  <script>
+    (function(){
+      const navToggle=document.querySelector('.nav-toggle');
+      const navMain=document.querySelector('#primary-nav');
+      const menuItems=Array.from(document.querySelectorAll('.menu-item'));
+
+      function closeAll(except){
+        menuItems.forEach(li=>{
+          if(except && li===except) return;
+          li.dataset.open='false';
+          const btn=li.querySelector('button.nav-link');
+          if(btn) btn.setAttribute('aria-expanded','false');
+        });
+      }
+
+      function openDropdown(li){
+        closeAll(li);
+        li.dataset.open='true';
+        const btn=li.querySelector('button.nav-link');
+        if(btn) btn.setAttribute('aria-expanded','true');
+      }
+
+      navToggle?.addEventListener('click',()=>{
+        const open=navMain.getAttribute('data-open')==='true';
+        navMain.setAttribute('data-open',String(!open));
+        navToggle.setAttribute('aria-expanded',String(!open));
+        if(open) closeAll();
+      });
+
+      menuItems.forEach(li=>{
+        const btn=li.querySelector('button.nav-link');
+        if(!btn) return;
+        
+        // Click handler for mobile
+        btn.addEventListener('click',(e)=>{
+          e.preventDefault();
+          const isOpen=li.dataset.open==='true';
+          closeAll(li);
+          li.dataset.open=String(!isOpen);
+          btn.setAttribute('aria-expanded',String(!isOpen));
+        });
+
+        // Hover handler for desktop - open on hover
+        li.addEventListener('mouseenter',()=>{
+          if(window.innerWidth > 980){
+            openDropdown(li);
+          }
+        });
+
+        // Close only when mouse leaves the entire menu item (including dropdown)
+        li.addEventListener('mouseleave',()=>{
+          if(window.innerWidth > 980){
+            setTimeout(()=>{
+              if(!li.matches(':hover')){
+                li.dataset.open='false';
+                btn.setAttribute('aria-expanded','false');
+              }
+            }, 100);
+          }
+        });
+      });
+
+      document.addEventListener('click',(e)=>{
+        const t=e.target;
+        if(!(t instanceof Element)) return;
+        if(!t.closest('.nav-main')) closeAll();
+      });
+
+            document.addEventListener('keydown',(e)=>{ if(e.key==='Escape') closeAll(); });
+
+      // Coming Soon toast for not-yet-available links
+      var comingSoonTimer;
+      document.querySelectorAll('a.js-coming-soon').forEach(function(link){
+        link.addEventListener('click', function(e){
+          e.preventDefault();
+          closeAll();
+          if (navMain) navMain.setAttribute('data-open','false');
+          if (navToggle) navToggle.setAttribute('aria-expanded','false');
+          var comingSoonToast = document.getElementById('comingSoonToast');
+          if (!comingSoonToast) return;
+          comingSoonToast.classList.add('show');
+          clearTimeout(comingSoonTimer);
+          comingSoonTimer = setTimeout(function(){
+            comingSoonToast.classList.remove('show');
+          }, 2200);
+        });
+      });
+    })();
+
+    // Handle same-page link clicks to refresh
+    document.addEventListener('DOMContentLoaded', () => {
+      const currentPage = window.location.pathname.split('/').pop();
+      const allLinks = document.querySelectorAll('a[href]');
+      
+      allLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          const href = link.getAttribute('href');
+          const linkPage = href.split('/').pop().split('#')[0];
+          
+          // If clicking on the same page (and not an anchor link or mailto/tel)
+          if (linkPage === currentPage && !href.startsWith('#') && !href.startsWith('mailto:') && !href.startsWith('tel:') && !href.startsWith('http')) {
+            e.preventDefault();
+            location.reload();
+          }
+        });
+      });
+    });
+  </script>
+
+  <!-- ===== TUITION MODAL ===== -->
+  <style>
+    .tuition-modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      z-index: 9998;
+      animation: modalFadeIn 0.3s ease;
+    }
+    .tuition-modal-overlay.active { display: block; }
+
+    .tuition-modal {
+      display: none;
+      position: fixed;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 92%;
+      max-width: 860px;
+      height: 86vh;
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.35);
+      z-index: 9999;
+      overflow: hidden;
+      animation: modalSlideIn 0.3s ease;
+    }
+    .tuition-modal.active { display: flex; flex-direction: column; }
+
+    .tuition-modal__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid #e5e7eb;
+      flex: 0 0 auto;
+    }
+    .tuition-modal__title {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 1.5rem;
+      color: #111827;
+      margin: 0;
+    }
+    .tuition-modal__close {
+      background: transparent;
+      border: none;
+      font-size: 1.75rem;
+      line-height: 1;
+      cursor: pointer;
+      color: #6b7280;
+      width: 40px; height: 40px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 50%;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+    .tuition-modal__close:hover {
+      background: #f3f4f6;
+      color: #111827;
+    }
+
+    .tuition-modal__body {
+      flex: 1 1 0;
+      overflow: hidden;
+    }
+    .tuition-modal__body iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    @keyframes modalFadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes modalSlideIn {
+      from { transform: translate(-50%, -48%); opacity: 0; }
+      to { transform: translate(-50%, -50%); opacity: 1; }
+    }
+    @media (max-width: 640px) {
+      .tuition-modal { width: 100%; height: 100vh; max-width: none; border-radius: 0; }
+    }
+  </style>
+
+  <!-- Modal Overlay -->
+  <div class="tuition-modal-overlay" id="tuitionOverlay" onclick="closeTuitionModal()"></div>
+
+  <!-- Modal Container -->
+  <div class="tuition-modal" id="tuitionModal" role="dialog" aria-modal="true" aria-label="Adult Tuition Payment">
+    <div class="tuition-modal__header">
+      <h2 class="tuition-modal__title">Monthly Tuition Payment</h2>
+      <button class="tuition-modal__close" onclick="closeTuitionModal()" aria-label="Close tuition form">&times;</button>
+    </div>
+    <div class="tuition-modal__body">
+      <iframe src="https://www.zeffy.com/embed/ticketing/adult-tuition" allowtransparency="true" allowfullscreen loading="lazy" scrolling="auto"></iframe>
+    </div>
+  </div>
+
+  <!-- Modal JS -->
+  <script>
+    (function(){
+      var overlay = document.getElementById('tuitionOverlay');
+      var modal = document.getElementById('tuitionModal');
+
+      window.openTuitionModal = function() {
+        overlay.classList.add('active');
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      };
+
+      window.closeTuitionModal = function() {
+        overlay.classList.remove('active');
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+      };
+
+      // Close on Escape key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeTuitionModal();
+      });
+    })();
+  </script>
+
+  <!-- Coming Soon Toast -->
+  <div id="comingSoonToast" class="coming-soon-toast" role="status" aria-live="polite">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+    <span>Coming soon!</span>
+  </div>
+</body>
+</html>
+

@@ -1,0 +1,600 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate | Hung Tao Choy Mei Leadership Institute</title>
+    <meta name="description" content="Support our mission to empower youth through martial arts. Your donation helps provide free programs for DC kids.">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Hung Tao Choy Mei Leadership Institute">
+    <meta property="og:title" content="Donate | Hung Tao Choy Mei Leadership Institute">
+    <meta property="og:description" content="Support our mission to empower youth through martial arts. Your donation helps provide free programs for DC kids.">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="images/jowga/favicon.ico" type="image/vnd.microsoft.icon">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS (precompiled: npx tailwindcss -c tailwind.config.js -i tailwind.input.css -o css/tailwind.css --minify) -->
+    <link rel="stylesheet" href="css/tailwind.css">
+    
+    <style>
+        /* Fix horizontal scroll / shift issue */
+        html, body { overflow-x: hidden; max-width: 100vw; }
+
+        /* CSS Variables from index (1).html */
+        :root{
+            --bg:#ffffff;
+            --text:#1b1b1b;
+            --muted:#3f3f3f;
+            --border:rgba(0,0,0,.14);
+            --shadow:0 10px 24px rgba(0,0,0,.10);
+            --brand-dark:#2b2b2b;
+            --brand-deep:#0b2a3c;
+            --brand-gold:#f0c724;
+            --link:#0d6efd;
+            --container:1320px;
+            --radius:14px;
+            --radius-lg:18px;
+            --step--1: clamp(.92rem,.88rem+.2vw,1rem);
+            --step-0: clamp(1rem,.95rem+.25vw,1.125rem);
+            --step-1: clamp(1.15rem,1.05rem+.6vw,1.5rem);
+            --step-2: clamp(1.4rem,1.15rem+1.1vw,2rem);
+            --step-3: clamp(1.75rem,1.2rem+1.9vw,2.6rem);
+            --step-4: clamp(2.05rem,1.25rem+3vw,3.15rem);
+            --s2:.75rem;--s3:1rem;--s4:1.5rem;--s5:2rem;--s6:3rem;--s7:4rem;
+        }
+
+        /* Logo styling - make it completely white */
+        .site-logo{filter:invert(1) brightness(2)}
+
+        /* Header / nav styles */
+        .site-header{background:#000;color:#fff}
+        .navbar{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:1.5rem;padding:1.25rem 0}
+
+        .brand{display:flex;align-items:center;gap:.75rem;text-decoration:none;color:#fff;font-weight:800;letter-spacing:.02em}
+        .brand img{display:block;transform:scale(1.15)}
+
+        .nav-toggle{display:none;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:#fff;border-radius:12px;padding:.7rem 1rem;font-weight:700;font-size:1.05rem}
+
+        nav[aria-label="Primary"] ul{list-style:none;margin:0;padding:0;display:flex;align-items:center;justify-content:space-evenly;gap:.5rem;flex-wrap:wrap;width:100%}
+        .menu-item{position:relative}
+        .nav-link{color:#fff;text-decoration:none;display:inline-flex;align-items:center;gap:.4rem;padding:.7rem .8rem;border-radius:12px;position:relative;transition:transform 140ms ease, background 140ms ease, box-shadow 140ms ease;font-size:.95rem;font-weight:600}
+        .nav-link:hover{background:rgba(255,255,255,.10);transform:translateY(-1px);box-shadow:0 6px 14px rgba(0,0,0,.25)}
+        .nav-link::after{content:"";position:absolute;left:.7rem;right:.7rem;bottom:.35rem;height:2px;background:rgba(240,199,36,.9);transform:scaleX(0);transform-origin:left;transition:transform 160ms ease;border-radius:999px}
+        .nav-link:hover::after{transform:scaleX(1)}
+        button.nav-link{border:0;background:transparent;font:inherit;cursor:pointer}
+
+        .dropdown{position:absolute;left:0;top:calc(100% + .35rem);min-width:15rem;background:#fff;color:var(--text);border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow);padding:.4rem;display:none;z-index:20}
+        .dropdown a{display:block;padding:.6rem .75rem;border-radius:10px;color:var(--text);text-decoration:none}
+        .dropdown a:hover{background:rgba(13,110,253,.08)}
+        .menu-item[data-open="true"]>.dropdown{display:block}
+
+        .nav-actions{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;justify-content:flex-end}
+        .nav-actions .btn{transition:transform 140ms ease, box-shadow 140ms ease}
+        .nav-actions .btn:hover{transform:translateY(-1px);box-shadow:0 8px 18px rgba(0,0,0,.28)}
+
+        .btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:.7rem 1.35rem;border-radius:999px;border:1px solid rgba(255,255,255,.25);background:transparent;color:#fff;text-decoration:none;font-weight:700;font-size:1.05rem}
+        .btn:hover{background:rgba(255,255,255,.10)}
+        .btn--donate{background:var(--brand-gold);border-color:rgba(0,0,0,.2);color:#000;box-shadow:0 0 10px rgba(240,199,36,.28)}
+
+        .nav-main{display:grid;grid-template-columns:1fr auto;align-items:center;gap:1rem}
+
+        @media (max-width:1150px){
+            .nav-toggle{display:inline-flex;justify-self:end}
+            .nav-main{display:none}
+            .nav-main[data-open="true"]{display:block;grid-column:1 / -1;background:#000}
+            .navbar{grid-template-columns:1fr auto}
+            .brand img{transform:none;max-width:min(300px,60vw);height:auto}
+
+            nav[aria-label="Primary"] ul{flex-direction:column;align-items:stretch;padding:.5rem 0;justify-content:flex-start}
+            .dropdown{position:static;box-shadow:none}
+            .menu-item{width:100%}
+            .nav-link{width:100%;justify-content:space-between}
+            .nav-actions{width:100%;justify-content:flex-start;padding:.25rem 0 .5rem}
+        }
+
+        /* Footer styling from index (1).html */
+        footer{background:#111;color:#fff;padding:var(--s6) 0}
+        .footer-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s5)}
+        footer h2{font-size:var(--step-1);margin:0 0 .75rem;font-weight:800}
+        .footer-col a{color:#fff;transition:color 0.3s ease}
+        .footer-col a:hover{color:var(--brand-gold)}
+        .footer-list{list-style:none;margin:0;padding:0;display:grid;gap:.5rem}
+        .contact-item{display:flex;gap:.6rem;align-items:flex-start}
+        .icon{width:20px;height:20px;flex:0 0 20px;opacity:.95;margin-top:.15rem}
+        .social{display:flex;gap:.75rem;align-items:center;flex-wrap:wrap}
+        .social a{display:inline-flex;align-items:center;gap:.5rem;text-decoration:none;padding:.45rem .65rem;border:1px solid rgba(255,255,255,.22);border-radius:999px;background:rgba(255,255,255,.06)}
+        .social a:hover{background:rgba(255,255,255,.12)}
+        .social svg{width:18px;height:18px;display:block}
+        .visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+        /* Container styling for footer */
+        .container{width:min(100% - 2rem,var(--container));margin-inline:auto}
+
+        /* Responsive footer */
+        @media (max-width:980px){
+            .footer-grid{grid-template-columns:1fr 1fr}
+        }
+        @media (max-width:560px){
+            .footer-grid{grid-template-columns:1fr}
+        }
+
+        /* Modal/Popup styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            z-index: 9998;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-container {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            z-index: 9999;
+            overflow: hidden;
+            animation: slideIn 0.3s ease;
+        }
+
+        .modal-container.active {
+            display: block;
+        }
+
+        .modal-overlay.active {
+            display: block;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .modal-close {
+            background: transparent;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #6b7280;
+            padding: 0;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background 0.2s ease;
+        }
+
+        .modal-close:hover {
+            background: #f3f4f6;
+            color: #111827;
+        }
+
+        .modal-body {
+            height: 600px;
+            overflow: auto;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { 
+                transform: translate(-50%, -45%);
+                opacity: 0;
+            }
+            to { 
+                transform: translate(-50%, -50%);
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .modal-container {
+                width: 95%;
+                max-height: 95vh;
+            }
+            .modal-body {
+                height: 500px;
+            }
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: hsl(0, 0%, 9%); }
+        ::-webkit-scrollbar-thumb { background: hsl(47, 87%, 54%); border-radius: 5px; }
+
+        /* Coming Soon Toast */
+        .coming-soon-toast {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #111;
+            color: #fff;
+            padding: 0.8rem 1.25rem;
+            border-radius: 999px;
+            border: 1px solid #f0c724;
+            box-shadow: 0 8px 24px rgba(0,0,0,.35);
+            font-size: 0.9rem;
+            font-weight: 600;
+            z-index: 10000;
+            opacity: 0;
+            transform: translateY(12px);
+            pointer-events: none;
+            transition: opacity 0.25s ease, transform 0.25s ease;
+        }
+        .coming-soon-toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .coming-soon-toast svg {
+            width: 18px;
+            height: 18px;
+            color: #f0c724;
+            flex-shrink: 0;
+        }
+        @media (max-width: 480px) {
+            .coming-soon-toast {
+                left: 1rem;
+                right: 1rem;
+                bottom: 1rem;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-900 font-sans">
+    <!-- Header/Navigation -->
+    <header class="site-header" role="banner">
+        <div class="container">
+            <div class="navbar">
+                <a href="index.html" class="brand" aria-label="HUNG TAO CHOY MEI LEADERSHIP INSTITUTE home"><img class="site-logo" src="images/jowga/logo.png" alt="Hung Tao Choy Mei Leadership Institute" width="335" height="44" loading="eager" decoding="async" /></a>
+
+                <button class="nav-toggle" type="button" aria-controls="primary-nav" aria-expanded="false">Menu</button>
+
+                <div class="nav-main" id="primary-nav" data-open="false">
+                    <nav aria-label="Primary">
+                        <ul>
+                            <li class="menu-item">
+                                <button class="nav-link" type="button" aria-haspopup="true" aria-expanded="false">Offerings <span aria-hidden="true">▾</span></button>
+                                <div class="dropdown" role="menu">
+                                    <a role="menuitem" href="children_program.html">Kids Programs (FREE)</a>
+                                    <a role="menuitem" href="adult-program.html">Adult Classes</a>
+                                    <a role="menuitem" href="https://www.peerspace.com/pages/listings/5aaab30bb5c4b156000c8347" target="_blank" rel="noopener noreferrer">Book Our Studio</a>
+                                    <a role="menuitem" href="#" class="js-coming-soon">Book a Performance</a>
+                                </div>
+                            </li>
+
+                            <li class="menu-item"><a class="nav-link" href="core-curriculum.html" style="font-weight: 400; font-size: 0.95rem;">What We Teach</a></li>
+
+                            <li class="menu-item">
+                                <button class="nav-link" type="button" aria-haspopup="true" aria-expanded="false">About <span aria-hidden="true">▾</span></button>
+                                <div class="dropdown" role="menu">
+                                    <a role="menuitem" href="about-us.html">About Us</a>
+                                    <a role="menuitem" href="index.html#history">Our History</a>
+                                    <a role="menuitem" href="our-team.html">Our Team</a>
+                                    <a role="menuitem" href="jow-ga-explained.html">Jow Ga Explained</a>
+                                </div>
+                            </li>
+
+                            <li class="menu-item">
+                                <button class="nav-link" type="button" aria-haspopup="true" aria-expanded="false">Resources <span aria-hidden="true">▾</span></button>
+                                <div class="dropdown" role="menu">
+                                    <a role="menuitem" href="#" class="js-coming-soon">2026 Schedule</a>
+                                    <a role="menuitem" href="#" class="js-coming-soon">Events Calendar</a>
+                                </div>
+                            </li>
+                            <li class="menu-item"><a class="nav-link" href="https://www.zeffy.com/en-US/ticketing/hung-tao-choy-mei-leadership-institutes-shop" target="_blank" rel="noopener noreferrer">Shop</a></li>
+                        </ul>
+                    </nav>
+
+                    <div class="nav-actions">
+                        <a class="btn btn--donate" href="donate.html">Donate</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Mission Statement and Impact Section -->
+        <section class="py-16 md:py-20 bg-white">
+            <div class="container max-w-4xl text-center">
+                <h1 class="font-bebas text-4xl md:text-5xl text-gray-900 mb-6">
+                    Support Our Mission to Empower Youth
+                </h1>
+                <p class="text-lg md:text-xl text-gray-700 leading-relaxed mb-8">
+                    Your generous donation helps us provide <strong>free martial arts programs</strong> and leadership training to youth in Washington, DC. 
+                    For over 30 years, we've been building character, discipline, and confidence in young people through the practice of Kung Fu.
+                </p>
+                <p class="text-lg md:text-xl text-gray-700 leading-relaxed mb-8">
+                    Every contribution directly supports our mission to keep the DC youth healthy, in school and on the path to success.
+                </p>
+                
+                <!-- Donation notes -->
+                <div class="max-w-2xl mx-auto mb-8 space-y-3 text-sm text-gray-500 leading-relaxed">
+                    <p>
+                        Your donation is 100% tax-deductible. After your payment, Zeffy will email you a receipt that you can keep for your tax records.
+                    </p>
+                    <p>
+                        We use Zeffy to ensure 100% of your purchase goes directly to our mission. Zeffy charges us $0 in fees, but they will ask for an optional tip at checkout to keep their platform running for nonprofits. You are welcome to change this tip amount to 'Other' and enter $0 if you prefer.
+                    </p>
+                </div>
+
+                <!-- Donate Button -->
+                <button onclick="openZeffyPopup()" class="inline-block px-8 py-4 bg-yellow-400 text-gray-900 rounded-full font-bold text-lg hover:bg-yellow-300 transition-all shadow-lg hover:shadow-xl hover:scale-105 transform cursor-pointer border-0">
+                    Donate Now
+                </button>
+            </div>
+
+            <!-- How Donations Make a Difference -->
+            <div class="container max-w-6xl mt-16">
+                <h2 class="font-bebas text-4xl md:text-5xl text-center text-gray-900 mb-6">
+                    How Your Donations Make a Difference
+                </h2>
+                <p class="text-lg text-center text-gray-700 max-w-3xl mx-auto mb-12">
+                    Your contributions fund special events, workshops, and programs that create life-changing experiences for children in our community.
+                </p>
+
+                <div class="grid md:grid-cols-2 gap-8 mb-12">
+                    <!-- Summer Camp -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <img src="Summer Campers in gear.jpg" alt="Summer campers in martial arts gear ready for training" class="w-full h-64 object-cover">
+                        <div class="p-6">
+                            <h3 class="font-bebas text-2xl text-gray-900 mb-3">Summer Camp Programs</h3>
+                            <p class="text-gray-700 leading-relaxed">
+                                Your donations provide equipment, uniforms, and instruction for our free summer camp programs. 
+                                These intensive sessions keep DC kids engaged, active, and learning throughout the summer months when they need it most.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Camp Open Arms -->
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <img src="Camp Open Arms two day workshop.jpeg" alt="Camp Open Arms workshop for children with disabilities" class="w-full h-64 object-cover">
+                        <div class="p-6">
+                            <h3 class="font-bebas text-2xl text-gray-900 mb-3">Camp Open Arms Workshop</h3>
+                            <p class="text-gray-700 leading-relaxed">
+                                Thanks to donor support, we host specialized workshops like Camp Open Arms—a two-day program designed for children with disabilities. 
+                                These inclusive events provide adaptive martial arts training in a supportive, encouraging environment where every child can thrive.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer role="contentinfo">
+        <div class="container" id="contact">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="index.html" aria-label="Home">
+                        <img class="site-logo" src="images/jowga/logo.png" alt="Hung Tao Choy Mei Leadership Institute" width="335" height="44" loading="lazy" decoding="async" />
+                    </a>
+                    <div style="height:1rem"></div>
+                    <div class="footer-list">
+                        <div class="contact-item">
+                            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a7 7 0 0 1 7 7c0 5.25-7 13-7 13S5 14.25 5 9a7 7 0 0 1 7-7m0 9.5A2.5 2.5 0 1 0 12 6a2.5 2.5 0 0 0 0 5.5"/></svg>
+                            <div><a href="https://www.google.com/maps/search/?api=1&query=1351+U+Street+NW,+Washington,+DC+20009" target="_blank" rel="noopener">1351 U Street NW, Washington, DC 20009</a></div>
+                        </div>
+                        <div class="contact-item" style="margin-top:0.5rem;">
+                            <div style="font-weight:400;font-size:1rem;"><a href="contact.html">Contact Us &rarr;</a></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h2>Quick Links</h2>
+                    <ul class="footer-list">
+                        <li><a href="children_program.html">Kids Programs (FREE)</a></li>
+                        <li><a href="adult-program.html">Adult Classes</a></li>
+                        <li><a href="https://www.peerspace.com/pages/listings/5aaab30bb5c4b156000c8347" target="_blank" rel="noopener noreferrer">Book Our Studio</a></li>
+                        <li><a href="core-curriculum.html">What We Teach</a></li>
+                        <li><a href="about-us.html">About Us</a></li>
+                        <li><a href="our-team.html">Our Team</a></li>
+                        <li><a href="donate.html">Donate</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h2>Follow Us</h2>
+                    <div class="social">
+                        <a href="https://www.instagram.com/hungtaochoymei" rel="noopener" aria-label="Instagram">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5m10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3m-5 4.5A5.5 5.5 0 1 1 6.5 12 5.5 5.5 0 0 1 12 8.5m0 2A3.5 3.5 0 1 0 15.5 12 3.5 3.5 0 0 0 12 10.5M18 6.2a1 1 0 1 1-1 1 1 1 0 0 1 1-1"/></svg>
+                            <span class="visually-hidden">Instagram</span>
+                        </a>
+                        <a href="https://youtube.com/@htcmrahim?si=JBiVO7Yl-VWsVz7-" rel="noopener" aria-label="YouTube">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.6 7.2a3 3 0 0 0-2.1-2.1C17.7 4.6 12 4.6 12 4.6s-5.7 0-7.5.5A3 3 0 0 0 2.4 7.2 31.4 31.4 0 0 0 2 12a31.4 31.4 0 0 0 .4 4.8 3 3 0 0 0 2.1 2.1c1.8.5 7.5.5 7.5.5s5.7 0 7.5-.5a3 3 0 0 0 2.1-2.1A31.4 31.4 0 0 0 22 12a31.4 31.4 0 0 0-.4-4.8M10 15.5v-7l6 3.5z"/></svg>
+                            <span class="visually-hidden">YouTube</span>
+                        </a>
+                        <a href="https://universeodon.com/@jowgadc" rel="noopener" aria-label="Mastodon">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.94 14c-.28 1.41-2.52 2.95-5.08 3.25-1.33.16-2.64.3-4.04.24-2.3-.11-4.11-.57-4.11-.57 0 .23.02.45.04.66.38 3.84 2.87 4.57 5.23 4.69 2.38.12 4.5-.59 4.5-.59l.1 2.2s-1.67.9-4.63.96c-1.63.03-3.66-.04-6.03-.67C3.65 22.83 1.86 18.65 1.5 14.41c-.14-1.62-.05-3.15-.05-4.43 0-5.6 3.67-7.24 3.67-7.24C6.81 1.67 9.59 1.03 12.44 1h.07c2.85.03 5.64.67 7.32 1.74 0 0 3.67 1.64 3.67 7.24 0 0 .05 4.12-.56 6.02z"/></svg>
+                            <span class="visually-hidden">Mastodon</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h2>Resources</h2>
+                    <ul class="footer-list">
+                        <li><a href="#" class="js-coming-soon">2026 Schedule</a></li>
+                        <li><a href="#" class="js-coming-soon">Events Calendar</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="margin-top:3rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,.1);text-align:center">
+                <p>&copy; 2026 Hung Tao Choy Mei Leadership Institute. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Zeffy Popup Modal -->
+    <div class="modal-overlay" id="zeffyModal" onclick="closeZeffyPopup()"></div>
+    <div class="modal-container" id="zeffyModalContainer">
+        <div class="modal-header">
+            <h2 class="font-bebas text-2xl text-gray-900">Make Your Donation</h2>
+            <button class="modal-close" onclick="closeZeffyPopup()" aria-label="Close donation form">&times;</button>
+        </div>
+        <div class="modal-body">
+            <iframe 
+                title='Donation form powered by Zeffy' 
+                style='border: 0; width:100%; height:100%;' 
+                src='https://www.zeffy.com/embed/donation-form/donate-to-empower-the-youth' 
+                allowpaymentrequest 
+                allowTransparency="true">
+            </iframe>
+        </div>
+    </div>
+
+    <script>
+        // Zeffy Popup Modal Functions
+        function openZeffyPopup() {
+            const overlay = document.getElementById('zeffyModal');
+            const container = document.getElementById('zeffyModalContainer');
+            overlay.classList.add('active');
+            container.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+
+        function closeZeffyPopup() {
+            const overlay = document.getElementById('zeffyModal');
+            const container = document.getElementById('zeffyModalContainer');
+            overlay.classList.remove('active');
+            container.classList.remove('active');
+            document.body.style.overflow = ''; // Restore scrolling
+        }
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeZeffyPopup();
+            }
+        });
+
+        // Navigation functionality
+        (function(){
+          const navToggle=document.querySelector('.nav-toggle');
+          const navMain=document.querySelector('#primary-nav');
+          const menuItems=Array.from(document.querySelectorAll('.menu-item'));
+
+          function closeAll(except){
+            menuItems.forEach(li=>{
+              if(except && li===except) return;
+              li.dataset.open='false';
+              const btn=li.querySelector('button.nav-link');
+              if(btn) btn.setAttribute('aria-expanded','false');
+            });
+          }
+
+          function openDropdown(li){
+            closeAll(li);
+            li.dataset.open='true';
+            const btn=li.querySelector('button.nav-link');
+            if(btn) btn.setAttribute('aria-expanded','true');
+          }
+
+          navToggle?.addEventListener('click',()=>{
+            const open=navMain.getAttribute('data-open')==='true';
+            navMain.setAttribute('data-open',String(!open));
+            navToggle.setAttribute('aria-expanded',String(!open));
+            if(open) closeAll();
+          });
+
+          menuItems.forEach(li=>{
+            const btn=li.querySelector('button.nav-link');
+            if(!btn) return;
+            
+            // Click handler for mobile
+            btn.addEventListener('click',(e)=>{
+              e.preventDefault();
+              const isOpen=li.dataset.open==='true';
+              closeAll(li);
+              li.dataset.open=String(!isOpen);
+              btn.setAttribute('aria-expanded',String(!isOpen));
+            });
+
+            // Hover handler for desktop - open on hover
+            li.addEventListener('mouseenter',()=>{
+              if(window.innerWidth > 980){
+                openDropdown(li);
+              }
+            });
+
+            // Close only when mouse leaves the entire menu item (including dropdown)
+            li.addEventListener('mouseleave',()=>{
+              if(window.innerWidth > 980){
+                setTimeout(()=>{
+                  if(!li.matches(':hover')){
+                    li.dataset.open='false';
+                    btn.setAttribute('aria-expanded','false');
+                  }
+                }, 100);
+              }
+            });
+          });
+
+          document.addEventListener('click',(e)=>{
+            const t=e.target;
+            if(!(t instanceof Element)) return;
+            if(!t.closest('.nav-main')) closeAll();
+          });
+
+                document.addEventListener('keydown',(e)=>{ if(e.key==='Escape') closeAll(); });
+
+      // Coming Soon toast for not-yet-available links
+      var comingSoonTimer;
+      document.querySelectorAll('a.js-coming-soon').forEach(function(link){
+        link.addEventListener('click', function(e){
+          e.preventDefault();
+          closeAll();
+          if (navMain) navMain.setAttribute('data-open','false');
+          if (navToggle) navToggle.setAttribute('aria-expanded','false');
+          var comingSoonToast = document.getElementById('comingSoonToast');
+          if (!comingSoonToast) return;
+          comingSoonToast.classList.add('show');
+          clearTimeout(comingSoonTimer);
+          comingSoonTimer = setTimeout(function(){
+            comingSoonToast.classList.remove('show');
+          }, 2200);
+        });
+      });
+        })();
+    </script>
+
+  <!-- Coming Soon Toast -->
+  <div id="comingSoonToast" class="coming-soon-toast" role="status" aria-live="polite">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+    <span>Coming soon!</span>
+  </div>
+</body>
+</html>

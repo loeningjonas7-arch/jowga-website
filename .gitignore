@@ -1,0 +1,7 @@
+# OS / editor cruft
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Tailwind build output (regenerated from tailwind.input.css)
+node_modules/
